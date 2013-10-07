@@ -33,6 +33,25 @@
 		4BE7D3E017EB75E7003445F3 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7D3DD17EB75E7003445F3 /* XPathQuery.m */; };
 		4BE7D3E817EB7DBF003445F3 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7D3E717EB7DBE003445F3 /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4BE7D3E917EB7DBF003445F3 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7D3E717EB7DBE003445F3 /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		4BE7D3ED17EBA721003445F3 /* PropertyUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7D3EC17EBA721003445F3 /* PropertyUtil.m */; };
+		4BE7D3EE17EBA721003445F3 /* PropertyUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7D3EC17EBA721003445F3 /* PropertyUtil.m */; };
+		4BE7D3F117EBAA93003445F3 /* ClassTestExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7D3F017EBAA93003445F3 /* ClassTestExample.m */; };
+		4BE7D40117EF3EB3003445F3 /* ACWebScrapingClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7D3F417EF3EAF003445F3 /* ACWebScrapingClient.m */; };
+		4BE7D40217EF3EB3003445F3 /* ACWebScrapingClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7D3F417EF3EAF003445F3 /* ACWebScrapingClient.m */; };
+		4BE7D40317EF3EB3003445F3 /* ACWebScrapingOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7D3F617EF3EB0003445F3 /* ACWebScrapingOperation.m */; };
+		4BE7D40417EF3EB3003445F3 /* ACWebScrapingOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7D3F617EF3EB0003445F3 /* ACWebScrapingOperation.m */; };
+		4BE7D40517EF3EB3003445F3 /* ACWebScrapingActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7D3F817EF3EB0003445F3 /* ACWebScrapingActivityIndicatorManager.m */; };
+		4BE7D40617EF3EB3003445F3 /* ACWebScrapingActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7D3F817EF3EB0003445F3 /* ACWebScrapingActivityIndicatorManager.m */; };
+		4BE7D40717EF3EB3003445F3 /* ACWebScraperQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7D3FA17EF3EB1003445F3 /* ACWebScraperQueue.m */; };
+		4BE7D40817EF3EB3003445F3 /* ACWebScraperQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7D3FA17EF3EB1003445F3 /* ACWebScraperQueue.m */; };
+		4BE7D40917EF3EB3003445F3 /* ACWebScraper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7D3FC17EF3EB1003445F3 /* ACWebScraper.m */; };
+		4BE7D40A17EF3EB3003445F3 /* ACWebScraper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7D3FC17EF3EB1003445F3 /* ACWebScraper.m */; };
+		4BE7D40B17EF3EB3003445F3 /* NSString+Javascript.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7D3FE17EF3EB1003445F3 /* NSString+Javascript.m */; };
+		4BE7D40C17EF3EB3003445F3 /* NSString+Javascript.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7D3FE17EF3EB1003445F3 /* NSString+Javascript.m */; };
+		4BE7D40D17EF3EB3003445F3 /* UIWebView+Document.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7D40017EF3EB2003445F3 /* UIWebView+Document.m */; };
+		4BE7D40E17EF3EB3003445F3 /* UIWebView+Document.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7D40017EF3EB2003445F3 /* UIWebView+Document.m */; };
+		4BE7D41217EF46C0003445F3 /* ParsingURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7D41117EF46C0003445F3 /* ParsingURL.m */; };
+		4BE7D41317EF46C0003445F3 /* ParsingURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7D41117EF46C0003445F3 /* ParsingURL.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +106,27 @@
 		4BE7D3DE17EB75E7003445F3 /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
 		4BE7D3E617EB7DBE003445F3 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
 		4BE7D3E717EB7DBE003445F3 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
+		4BE7D3EB17EBA721003445F3 /* PropertyUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PropertyUtil.h; sourceTree = "<group>"; };
+		4BE7D3EC17EBA721003445F3 /* PropertyUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PropertyUtil.m; sourceTree = "<group>"; };
+		4BE7D3EF17EBAA93003445F3 /* ClassTestExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassTestExample.h; sourceTree = "<group>"; };
+		4BE7D3F017EBAA93003445F3 /* ClassTestExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassTestExample.m; sourceTree = "<group>"; };
+		4BE7D3F217EF3EAE003445F3 /* ACWebScraping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACWebScraping.h; sourceTree = "<group>"; };
+		4BE7D3F317EF3EAF003445F3 /* ACWebScrapingClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACWebScrapingClient.h; sourceTree = "<group>"; };
+		4BE7D3F417EF3EAF003445F3 /* ACWebScrapingClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACWebScrapingClient.m; sourceTree = "<group>"; };
+		4BE7D3F517EF3EAF003445F3 /* ACWebScrapingOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACWebScrapingOperation.h; sourceTree = "<group>"; };
+		4BE7D3F617EF3EB0003445F3 /* ACWebScrapingOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACWebScrapingOperation.m; sourceTree = "<group>"; };
+		4BE7D3F717EF3EB0003445F3 /* ACWebScrapingActivityIndicatorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACWebScrapingActivityIndicatorManager.h; sourceTree = "<group>"; };
+		4BE7D3F817EF3EB0003445F3 /* ACWebScrapingActivityIndicatorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACWebScrapingActivityIndicatorManager.m; sourceTree = "<group>"; };
+		4BE7D3F917EF3EB0003445F3 /* ACWebScraperQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACWebScraperQueue.h; sourceTree = "<group>"; };
+		4BE7D3FA17EF3EB1003445F3 /* ACWebScraperQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACWebScraperQueue.m; sourceTree = "<group>"; };
+		4BE7D3FB17EF3EB1003445F3 /* ACWebScraper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACWebScraper.h; sourceTree = "<group>"; };
+		4BE7D3FC17EF3EB1003445F3 /* ACWebScraper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACWebScraper.m; sourceTree = "<group>"; };
+		4BE7D3FD17EF3EB1003445F3 /* NSString+Javascript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Javascript.h"; sourceTree = "<group>"; };
+		4BE7D3FE17EF3EB1003445F3 /* NSString+Javascript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Javascript.m"; sourceTree = "<group>"; };
+		4BE7D3FF17EF3EB2003445F3 /* UIWebView+Document.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+Document.h"; sourceTree = "<group>"; };
+		4BE7D40017EF3EB2003445F3 /* UIWebView+Document.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+Document.m"; sourceTree = "<group>"; };
+		4BE7D41017EF46C0003445F3 /* ParsingURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParsingURL.h; sourceTree = "<group>"; };
+		4BE7D41117EF46C0003445F3 /* ParsingURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParsingURL.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,7 +187,10 @@
 		4B318D1017E52D7C006D359C /* FlexSource */ = {
 			isa = PBXGroup;
 			children = (
-				4BE7D3D317EB5191003445F3 /* ParsingLogic */,
+				4BE7D41417F03093003445F3 /* HTMLParser */,
+				4BE7D40F17EF3EBB003445F3 /* WebScraper */,
+				4BE7D3EA17EBA6E4003445F3 /* InternalRuntimeClass */,
+				4BE7D3D317EB5191003445F3 /* XMLParsingLogic */,
 				4B318D3F17EA5A22006D359C /* BusinessLogic */,
 				4B318D3617E52E91006D359C /* Models */,
 				4B318D1317E52D7C006D359C /* FlexSource.h */,
@@ -181,6 +224,8 @@
 			children = (
 				4B318D2717E52D7D006D359C /* FlexSourceTests-Info.plist */,
 				4B318D2817E52D7D006D359C /* InfoPlist.strings */,
+				4BE7D3EF17EBAA93003445F3 /* ClassTestExample.h */,
+				4BE7D3F017EBAA93003445F3 /* ClassTestExample.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -192,6 +237,8 @@
 				4B318D3817E52EB4006D359C /* ParsingRule.m */,
 				4B318D3B17E7ACA0006D359C /* ParsingObject.h */,
 				4B318D3C17E7ACA0006D359C /* ParsingObject.m */,
+				4BE7D41017EF46C0003445F3 /* ParsingURL.h */,
+				4BE7D41117EF46C0003445F3 /* ParsingURL.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -205,7 +252,7 @@
 			name = BusinessLogic;
 			sourceTree = "<group>";
 		};
-		4BE7D3D317EB5191003445F3 /* ParsingLogic */ = {
+		4BE7D3D317EB5191003445F3 /* XMLParsingLogic */ = {
 			isa = PBXGroup;
 			children = (
 				4BE7D3E617EB7DBE003445F3 /* GDataXMLNode.h */,
@@ -217,7 +264,45 @@
 				4BE7D3D617EB519F003445F3 /* HTMLParser.h */,
 				4BE7D3D717EB519F003445F3 /* HTMLParser.m */,
 			);
-			name = ParsingLogic;
+			name = XMLParsingLogic;
+			sourceTree = "<group>";
+		};
+		4BE7D3EA17EBA6E4003445F3 /* InternalRuntimeClass */ = {
+			isa = PBXGroup;
+			children = (
+				4BE7D3EB17EBA721003445F3 /* PropertyUtil.h */,
+				4BE7D3EC17EBA721003445F3 /* PropertyUtil.m */,
+			);
+			name = InternalRuntimeClass;
+			sourceTree = "<group>";
+		};
+		4BE7D40F17EF3EBB003445F3 /* WebScraper */ = {
+			isa = PBXGroup;
+			children = (
+				4BE7D3F217EF3EAE003445F3 /* ACWebScraping.h */,
+				4BE7D3F317EF3EAF003445F3 /* ACWebScrapingClient.h */,
+				4BE7D3F417EF3EAF003445F3 /* ACWebScrapingClient.m */,
+				4BE7D3F517EF3EAF003445F3 /* ACWebScrapingOperation.h */,
+				4BE7D3F617EF3EB0003445F3 /* ACWebScrapingOperation.m */,
+				4BE7D3F717EF3EB0003445F3 /* ACWebScrapingActivityIndicatorManager.h */,
+				4BE7D3F817EF3EB0003445F3 /* ACWebScrapingActivityIndicatorManager.m */,
+				4BE7D3F917EF3EB0003445F3 /* ACWebScraperQueue.h */,
+				4BE7D3FA17EF3EB1003445F3 /* ACWebScraperQueue.m */,
+				4BE7D3FB17EF3EB1003445F3 /* ACWebScraper.h */,
+				4BE7D3FC17EF3EB1003445F3 /* ACWebScraper.m */,
+				4BE7D3FD17EF3EB1003445F3 /* NSString+Javascript.h */,
+				4BE7D3FE17EF3EB1003445F3 /* NSString+Javascript.m */,
+				4BE7D3FF17EF3EB2003445F3 /* UIWebView+Document.h */,
+				4BE7D40017EF3EB2003445F3 /* UIWebView+Document.m */,
+			);
+			name = WebScraper;
+			sourceTree = "<group>";
+		};
+		4BE7D41417F03093003445F3 /* HTMLParser */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = HTMLParser;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -327,6 +412,15 @@
 				4BE7D3DA17EB519F003445F3 /* HTMLParser.m in Sources */,
 				4BE7D3DF17EB75E7003445F3 /* XPathQuery.m in Sources */,
 				4BE7D3E817EB7DBF003445F3 /* GDataXMLNode.m in Sources */,
+				4BE7D3ED17EBA721003445F3 /* PropertyUtil.m in Sources */,
+				4BE7D40117EF3EB3003445F3 /* ACWebScrapingClient.m in Sources */,
+				4BE7D40317EF3EB3003445F3 /* ACWebScrapingOperation.m in Sources */,
+				4BE7D40517EF3EB3003445F3 /* ACWebScrapingActivityIndicatorManager.m in Sources */,
+				4BE7D40717EF3EB3003445F3 /* ACWebScraperQueue.m in Sources */,
+				4BE7D40917EF3EB3003445F3 /* ACWebScraper.m in Sources */,
+				4BE7D40B17EF3EB3003445F3 /* NSString+Javascript.m in Sources */,
+				4BE7D40D17EF3EB3003445F3 /* UIWebView+Document.m in Sources */,
+				4BE7D41217EF46C0003445F3 /* ParsingURL.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +436,16 @@
 				4BE7D3DB17EB519F003445F3 /* HTMLParser.m in Sources */,
 				4BE7D3E017EB75E7003445F3 /* XPathQuery.m in Sources */,
 				4BE7D3E917EB7DBF003445F3 /* GDataXMLNode.m in Sources */,
+				4BE7D3EE17EBA721003445F3 /* PropertyUtil.m in Sources */,
+				4BE7D3F117EBAA93003445F3 /* ClassTestExample.m in Sources */,
+				4BE7D40217EF3EB3003445F3 /* ACWebScrapingClient.m in Sources */,
+				4BE7D40417EF3EB3003445F3 /* ACWebScrapingOperation.m in Sources */,
+				4BE7D40617EF3EB3003445F3 /* ACWebScrapingActivityIndicatorManager.m in Sources */,
+				4BE7D40817EF3EB3003445F3 /* ACWebScraperQueue.m in Sources */,
+				4BE7D40A17EF3EB3003445F3 /* ACWebScraper.m in Sources */,
+				4BE7D40C17EF3EB3003445F3 /* NSString+Javascript.m in Sources */,
+				4BE7D40E17EF3EB3003445F3 /* UIWebView+Document.m in Sources */,
+				4BE7D41317EF46C0003445F3 /* ParsingURL.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

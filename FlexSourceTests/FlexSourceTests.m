@@ -25,7 +25,7 @@
 }
 
 
-- (void)testBasic
+- (void)testXMLStructureParser
 {
     
     NSString *path = [[NSBundle bundleForClass:[self class] ] pathForResource:@"example_rule" ofType:@"xml"];
@@ -40,10 +40,44 @@
             NSArray *urls = [source nodesForXPath:@"url" error:nil];
             for (GDataXMLElement *url in urls) {
                 // call every source
+                
                 // get url for 
                 GDataXMLNode *uri = [url attributeForName:@"uri"];
                 NSLog(@"++++++ %@",uri.stringValue );
-                   
+                STAssertEqualObjects(uri.stringValue, @"https://addons.mozilla.org/en-us/firefox/addon/firepath/", @"Uri test");
+                
+                // get step number
+                GDataXMLNode *step = [url attributeForName:@"step"];
+                NSLog(@"++++++ %@",step.stringValue );
+                STAssertEqualObjects(step.stringValue, @"1", @"Step number test");
+                
+                // get headers
+                GDataXMLNode *headersRoot = [[url nodesForXPath:@"headers" error:nil] objectAtIndex:0];
+                NSArray *headers = [headersRoot nodesForXPath:@"header" error:nil];
+                for (GDataXMLElement *header in headers) {
+                    NSString *key = [header attributeForName:@"key"].stringValue;
+                    NSString *value = header.stringValue;
+                    STAssertEqualObjects(key, @"User-Agent", @"Header Key test");
+                    STAssertEqualObjects(value, @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:24.0) Gecko/20100101 Firefox/24.0", @"Header Key test");
+                }
+                
+                // get fields
+                GDataXMLNode *fieldsRoot = [[url nodesForXPath:@"fields" error:nil] objectAtIndex:0];
+                NSArray *fields = [fieldsRoot nodesForXPath:@"field" error:nil];
+                for (GDataXMLElement *field in fields) {
+                  //  NSString *name = [field attributeForName:@"name"].stringValue;
+                  //  NSString *type = [field attributeForName:@"type"].stringValue;
+                    NSString *xpath = field.stringValue;
+                    
+                    NSLog(@"%@",xpath);
+//                    STAssertEqualObjects(key, @"User-Agent", @"Header Key test");
+//                    STAssertEqualObjects(value, @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:24.0) Gecko/20100101 Firefox/24.0", @"Header Key test");
+                    
+                    
+                }
+
+                
+                return;
                 
                 NSLog(@"%@",url );
             }
@@ -53,7 +87,7 @@
 }
 
 
-- (void)testFullParsing
+- (void)testHTMLParsing
 {
     
     return;
@@ -123,5 +157,62 @@
     
     
 }
+
+
+
+-(void)testClassDynamicProperties{
+   NSDictionary *d= [PropertyUtil classPropsFor:[ClassTestExample class]];
+    
+    
+    ClassTestExample *c = [[ClassTestExample alloc]init];
+    c.test = @"dsad";
+    
+    
+    for (NSString * key in d) {
+        if (true) { //matching key
+            [c setValue:d[key] forKey:key ];
+        }
+    }
+    NSLog(@"%@",c.test);
+    
+    STAssertEqualObjects(c.test, @"NSString", @"Must be NSString");
+
+    
+}
+
+
+-(void)testXPath{
+    
+    NSString *urlAsString = @"https://addons.mozilla.org/en-us/firefox/addon/firepath/";
+    NSURL *url = [NSURL URLWithString:urlAsString];
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    
+    NSError *requestError;
+    NSURLResponse *urlResponse = nil;
+    NSData *response = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&urlResponse error:&requestError];
+    /* Return Value
+     The downloaded data for the URL request. Returns nil if a connection could not be created or if the download fails.
+     */
+    if (response == nil) {
+        // Check for problems
+        if (requestError != nil) {
+
+        }
+    }
+    else {
+        NSArray *tdNodes = PerformHTMLXPathQuery(response, @"//*[@id='addon'][1]");
+        NSLog(@"+++ %@",tdNodes);
+       // NSLog(@"%@",[[NSString alloc]initWithData:response encoding:NSUTF8StringEncoding] );
+
+
+    }
+    
+    
+    
+   }
+
+
+
+
 
 @end

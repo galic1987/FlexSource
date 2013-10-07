@@ -12,6 +12,9 @@
 #include <libxml/xmlreader.h>
 #import "XPathQuery.h"
 #import "GDataXMLNode.h"
+#import "PropertyUtil.h"
+#import "ClassTestExample.h"
+
 
 @interface FlexSourceTests : SenTestCase
 
