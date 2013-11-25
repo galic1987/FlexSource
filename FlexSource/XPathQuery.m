@@ -14,11 +14,95 @@
 
 #import "XPathQuery.h"
 
-#import <libxml/tree.h>
-#import <libxml/parser.h>
-#import <libxml/HTMLparser.h>
-#import <libxml/xpath.h>
-#import <libxml/xpathInternals.h>
+
+@implementation XPathQuery
+
+
+
+
+NSArray *PerformRuleReading(xmlDocPtr doc, xmlDocPtr rule, NSString *query)
+{
+    
+    // Summary
+    // parsing style singlethreaded sequential blocking
+
+    // in rule object (XML)
+    // in doc object (HTML)
+    // out NSArray of objects
+    
+    // 1. parser version == file version otherwise error
+    
+    // 2. each object in loop xpath query -- sort by priority
+    // ---> 2.1 start another loop sources for each object -- sort by priority
+    // ---> 2.2 start another loop urls for each soruce -- sort by steps
+    // ---> 2.3 start another loop fields for each object
+    // ---> 2.4 start another loop array for type array field
+    
+    // 3. push object to object pool - sigleton
+    
+    
+    
+    
+    xmlXPathContextPtr xpathCtx;
+    xmlXPathObjectPtr xpathObj;
+    
+    /* Create xpath evaluation context */
+    xpathCtx = xmlXPathNewContext(doc);
+    
+    
+    if(xpathCtx == NULL)
+	{
+		NSLog(@"Unable to create XPath context.");
+		return nil;
+    }
+    
+    /* Evaluate xpath expression */
+    xpathObj = xmlXPathEvalExpression((xmlChar *)[query cStringUsingEncoding:NSUTF8StringEncoding], xpathCtx);
+    if(xpathObj == NULL) {
+		NSLog(@"Unable to evaluate XPath.");
+		return nil;
+    }
+    
+    //    xmlChar *c1 = (xmlChar *)xpathObj->stringval;
+    //
+    //    if (c1) {
+    //        NSLog(@"******%@",[NSString stringWithCString:(char * const)c1 encoding:NSUTF8StringEncoding]);
+    //    }
+    
+	xmlNodeSetPtr nodes = xpathObj->nodesetval;
+	if (!nodes)
+	{
+		NSLog(@"Nodes was nil.");
+		return nil;
+	}
+	
+	NSMutableArray *resultNodes = [NSMutableArray array];
+	for (NSInteger i = 0; i < nodes->nodeNr; i++)
+	{
+		NSMutableDictionary *nodeDictionary = (NSMutableDictionary*)DictionaryForNode(nodes->nodeTab[i], nil);
+        
+        xmlXPathContextPtr xpContext = xmlXPathNewContext((xmlDocPtr)nodes->nodeTab[i]);
+        //        xpContext->doc
+        NSValue* value = [NSValue value:&xpContext withObjCType:@encode(xmlXPathContextPtr)];
+        [nodeDictionary setValue:value forKey:@"xmlXPathContextPtr"];
+        
+        // call recursevly
+		if (nodeDictionary)
+		{
+			[resultNodes addObject:nodeDictionary];
+		}
+	}
+    
+    /* Cleanup */
+    xmlXPathFreeObject(xpathObj);
+    xmlXPathFreeContext(xpathCtx);
+    
+    return resultNodes;
+}
+
+
+
+
 
 NSDictionary *DictionaryForNode(xmlNodePtr currentNode, NSMutableDictionary *parentResult)
 {
@@ -124,6 +208,8 @@ NSArray *PerformXPathQuery(xmlDocPtr doc, NSString *query)
 
     /* Create xpath evaluation context */
     xpathCtx = xmlXPathNewContext(doc);
+    
+    
     if(xpathCtx == NULL)
 	{
 		NSLog(@"Unable to create XPath context.");
@@ -136,7 +222,13 @@ NSArray *PerformXPathQuery(xmlDocPtr doc, NSString *query)
 		NSLog(@"Unable to evaluate XPath.");
 		return nil;
     }
-	
+    
+//    xmlChar *c1 = (xmlChar *)xpathObj->stringval;
+//                   
+//    if (c1) {
+//        NSLog(@"******%@",[NSString stringWithCString:(char * const)c1 encoding:NSUTF8StringEncoding]);
+//    }
+    
 	xmlNodeSetPtr nodes = xpathObj->nodesetval;
 	if (!nodes)
 	{
@@ -147,7 +239,14 @@ NSArray *PerformXPathQuery(xmlDocPtr doc, NSString *query)
 	NSMutableArray *resultNodes = [NSMutableArray array];
 	for (NSInteger i = 0; i < nodes->nodeNr; i++)
 	{
-		NSDictionary *nodeDictionary = DictionaryForNode(nodes->nodeTab[i], nil);
+		NSMutableDictionary *nodeDictionary = (NSMutableDictionary*)DictionaryForNode(nodes->nodeTab[i], nil);
+        
+        xmlXPathContextPtr xpContext = xmlXPathNewContext((xmlDocPtr)nodes->nodeTab[i]);
+//        xpContext->doc
+        NSValue* value = [NSValue value:&xpContext withObjCType:@encode(xmlXPathContextPtr)];
+        [nodeDictionary setValue:value forKey:@"xmlXPathContextPtr"];
+
+        // call recursevly
 		if (nodeDictionary)
 		{
 			[resultNodes addObject:nodeDictionary];
@@ -160,6 +259,9 @@ NSArray *PerformXPathQuery(xmlDocPtr doc, NSString *query)
     
     return resultNodes;
 }
+
+
+
 
 NSArray *PerformHTMLXPathQuery(NSData *document, NSString *query)
 {
@@ -198,3 +300,6 @@ NSArray *PerformXMLXPathQuery(NSData *document, NSString *query)
 	
 	return result;
 }
+@end
+
+

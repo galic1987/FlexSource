@@ -15,6 +15,14 @@
 #import "PropertyUtil.h"
 #import "ClassTestExample.h"
 
+#import "ParsingObject.h"
+#import "ParsingSource.h"
+#import "ParsingField.h"
+#import "ParsingURL.h"
+#import "ParsingFieldArray.h"
+
+#import "NSObject+FSClassHelper.h"
+
 
 @interface FlexSourceTests : SenTestCase
 

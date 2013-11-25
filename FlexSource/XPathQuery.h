@@ -11,6 +11,16 @@
 //  this copyright and permission notice. Attribution in compiled projects is
 //  appreciated but not required.
 //
+#import <libxml/tree.h>
+#import <libxml/parser.h>
+#import <libxml/HTMLparser.h>
+#import <libxml/xpath.h>
+#import <libxml/xpathInternals.h>
+
+@interface XPathQuery : NSObject
+
 
 NSArray *PerformHTMLXPathQuery(NSData *document, NSString *query);
 NSArray *PerformXMLXPathQuery(NSData *document, NSString *query);
+
+@end

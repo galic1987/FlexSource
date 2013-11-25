@@ -1,33 +1,100 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<objects>
-<object type="" name="" priority="" loading="">
+<objects parserVersion="1.0" fileVersion="1.0">
+<object type="" name="NSIvoObject" priority="2" loading="">
     <source priority="1" >
         <url step="1" uri="https://addons.mozilla.org/en-us/firefox/addon/firepath/">
             <headers>
                 <header key="User-Agent">Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:24.0) Gecko/20100101 Firefox/24.0</header>
+                <header key="User-Agent">Mozilla/1.0 (Macintosh; Intel Mac OS X 10.7; rv:24.0) Gecko/20100101 Firefox/24.0</header>
             </headers>
             <fields>
-                <field name="h1tag" type="string">
-                  <xpath>.//*[@id='addon']/hgroup/h1/span[1]</xpath>
-                </field>
-                <field name="h2tag" type="array">
+                <field name="h1tag" type="string">//*[@id='addon']/hgroup/h1/span[1]</field>
+                <arrayfield name="h2tag" type="string">
                     <xpath>.//*[span]</xpath>
-                </field>
+                    <arrayobject type="" name="" loading="">
+                        <field name="h1tag" type="string">//*[@id='addon']/hgroup/h1/span[1]</field>
+                        <field name="h2tag" type="string">//*[@id='addon']/hgroup/h1/span[1]</field>
+                    </arrayobject>
+                </arrayfield>
             </fields>
         </url>
-        <url step="2" uri="https://addons.mozilla.org/en-us/firefox/addon/firepath/">
+        <url step="2" uri="http://galic-design.com">
             <headers>
                 <header key="User-Agent">Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:24.0) Gecko/20100101 Firefox/24.0</header>
+                <header key="User-Agent">Mozilla/1.0 (Macintosh; Intel Mac OS X 10.7; rv:24.0) Gecko/20100101 Firefox/24.0</header>
             </headers>
             <fields>
-                <field name="h31tag" type="string">
-                    <xpath>.//*[@id='addon']/hgroup/h1/span[1]</xpath>
-                </field>
-                <field name="h4tag" type="array">
+                <field name="h1tag" type="string">//*[@id='addon']/hgroup/h1/span[1]</field>
+                <arrayfield name="h2tag" type="string">
                     <xpath>.//*[span]</xpath>
-                </field>
+                    <arrayobject type="" name="" loading="">
+                        <field name="h1tag" type="string">//*[@id='addon']/hgroup/h1/span[1]</field>
+                        <field name="h2tag" type="string">//*[@id='addon']/hgroup/h1/span[1]</field>
+                    </arrayobject>
+                </arrayfield>
+            </fields>
+        </url>
+        <url step="3" uri="http://galic-design.com">
+            <headers>
+                <header key="User-Agent">Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:24.0) Gecko/20100101 Firefox/24.0</header>
+                <header key="User-Agent">Mozilla/1.0 (Macintosh; Intel Mac OS X 10.7; rv:24.0) Gecko/20100101 Firefox/24.0</header>
+            </headers>
+            <fields>
+                <field name="h1tag" type="string">//*[@id='addon']/hgroup/h1/span[1]</field>
+                <arrayfield name="h2tag" type="string">
+                    <xpath>.//*[span]</xpath>
+                    <arrayobject type="" name="" loading="">
+                        <field name="h1tag" type="string">//*[@id='addon']/hgroup/h1/span[1]</field>
+                        <field name="h2tag" type="string">//*[@id='addon']/hgroup/h1/span[1]</field>
+                    </arrayobject>
+                </arrayfield>
             </fields>
         </url>
     </source>
+    
+</object>
+
+<object type="" name="NSIvoObject2" priority="5" loading="">
+    <source priority="4" >
+        <url step="1" uri="https://addons.mozilla.org/en-us/firefox/addon/firepath/">
+            <headers>
+                <header key="User-Agent">Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:24.0) Gecko/20100101 Firefox/24.0</header>
+                <header key="User-Agent">Mozilla/1.0 (Macintosh; Intel Mac OS X 10.7; rv:24.0) Gecko/20100101 Firefox/24.0</header>
+            </headers>
+            <fields>
+                <field name="h1tag" type="string">//*[@id='addon']/hgroup/h1/span[1]</field>
+                <arrayfield name="h2tag" type="string">
+                    <xpath>.//*[span]</xpath>
+                    <arrayobject type="" name="" loading="">
+                        <field name="h1tag" type="string">//*[@id='addon']/hgroup/h1/span[1]</field>
+                        <field name="h2tag" type="string">//*[@id='addon']/hgroup/h1/span[1]</field>
+                    </arrayobject>
+                </arrayfield>
+            </fields>
+        </url>
+    </source>
+    
+</object>
+
+<object type="" name="NSIvoObject3" priority="1" loading="">
+    <source priority="1" >
+        <url step="1" uri="https://addons.mozilla.org/en-us/firefox/addon/firepath/">
+            <headers>
+                <header key="User-Agent">Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:24.0) Gecko/20100101 Firefox/24.0</header>
+                <header key="User-Agent">Mozilla/1.0 (Macintosh; Intel Mac OS X 10.7; rv:24.0) Gecko/20100101 Firefox/24.0</header>
+            </headers>
+            <fields>
+                <field name="h1tag" type="string">//*[@id='addon']/hgroup/h1/span[1]</field>
+                <arrayfield name="h2tag" type="string">
+                    <xpath>.//*[span]</xpath>
+                    <arrayobject type="" name="" loading="">
+                        <field name="h1tag" type="string">//*[@id='addon']/hgroup/h1/span[1]</field>
+                        <field name="h2tag" type="string">//*[@id='addon']/hgroup/h1/span[1]</field>
+                    </arrayobject>
+                </arrayfield>
+            </fields>
+        </url>
+    </source>
+    
 </object>
 </objects>

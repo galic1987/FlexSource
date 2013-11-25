@@ -10,8 +10,12 @@
 
 @interface ParsingURL : NSObject
 
-@property (nonatomic, retain) NSMutableArray * headers;
-//@property (nonatomic, retain) NSMutableArray * headers;
+@property int step;
+
+@property (nonatomic, retain) NSString * uri;
+@property (nonatomic, retain) NSMutableDictionary * headers;
+
+@property (nonatomic, retain) NSMutableArray * fields;
 
 
 @end

@@ -7,8 +7,23 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PropertyUtil.h"
+#import "ParsingSource.h"
+#import "ParsingURL.h"
+#import "ParsingField.h"
+#import "ParsingFieldArray.h"
+#import "NSObject+FSClassHelper.h"
+#include <objc/objc-runtime.h>
 
-@interface ParsingObject : NSObject
-@property (nonatomic, retain) NSMutableArray<NSObject> * type;
+@interface ParsingObject : NSOperation
+
+
+@property (nonatomic, retain) NSString * type;
+@property (nonatomic, retain) NSString * name;
+@property int priority;
+@property (nonatomic, retain) NSString * loading;
+@property (nonatomic, retain) NSMutableArray  * sources;
+
++ (NSMutableArray*) createParsingField:(NSArray*)fields;
 
 @end
