@@ -7,11 +7,25 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "XPathQuery.h"
+#include <libxml/xmlreader.h>
+#import "ParsingObject.h"
+#import "ParsingSource.h"
+#import "ParsingField.h"
+#import "ParsingURL.h"
+#import "ParsingFieldArray.h"
+
+#import "NSObject+FSClassHelper.h"
+
+
 
 @interface ParsingRule : NSObject
 @property (nonatomic, retain) NSMutableArray<NSObject> * type;
-@property (nonatomic, retain) NSString *url;
+@property (nonatomic, retain) NSURL *url;
 @property (nonatomic, retain) NSDate *dateDownloaded;
+
+@property (nonatomic) double v;
+
 
 // not used but maybe open for further development
 
@@ -22,6 +36,11 @@
 
 
 
+
+// return objectPool
++(NSMutableArray*)parseRule:(NSData*)content;
++(BOOL)checkNewFileVersion:(double)version parseRule:(NSData*)content;
++(double)getVersion:(NSData*)content;
 
 
 

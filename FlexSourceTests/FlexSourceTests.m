@@ -25,9 +25,20 @@
 }
 
 
+-(void)testFlexSource{
+    FlexSource *fx = [[FlexSource alloc]initWithRuleUrl:nil];
+    [fx updateRules];
+    
+    // delegate method include
+    [fx parse];
+    
+}
+
+
+
 - (void)testXMLStructureParser
 {
-    
+    return;
     NSString *path = [[NSBundle bundleForClass:[self class] ] pathForResource:@"example_rule" ofType:@"xml"];
     NSData *xmlData = [NSData dataWithContentsOfFile:path];
     GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData options:0 error:nil];
@@ -161,6 +172,7 @@
 
 
 -(void)testClassDynamicProperties{
+    return;
    NSDictionary *d= [PropertyUtil classPropsFor:[ClassTestExample class]];
     
     
@@ -183,7 +195,7 @@
 
 
 -(void)testXPath{
-    
+    return;
     NSString *urlAsString = @"https://addons.mozilla.org/en-us/firefox/addon/firepath/";
     NSURL *url = [NSURL URLWithString:urlAsString];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
@@ -234,7 +246,7 @@
 
 
 -(void)testArrayParsing{
-    
+    return;
     NSString *urlAsString = @"https://addons.mozilla.org/en-us/firefox/addon/firepath/";
     NSURL *url = [NSURL URLWithString:urlAsString];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
@@ -284,7 +296,7 @@
 }
 
 -(void)testParsingBeta{
-    
+    return;
     NSString* file = [[NSBundle bundleForClass:[self class] ] pathForResource:@"example_rule" ofType:@"xml"];
     
     // full unit [NSBundle mainBundle]
@@ -321,6 +333,8 @@
     for (NSDictionary *object in objects) {
         // ---> 2.1 start another loop sources for each object -- sort by priority
         ParsingObject * parsingObject = [[ParsingObject alloc]init];
+        parsingObject.sources = [NSMutableArray array];
+
         //[parsingObject setAttributesForObject:[object objectForKey:@"nodeAttributeArray"]];
         [parsingObject setAttributesForObject:[object objectForKey:@"nodeAttributeArray"] classPropsFor:[ParsingObject class] obj:parsingObject];
         
@@ -329,6 +343,7 @@
         NSArray *sources = [object objectForKey:@"nodeChildArray"];
         for (NSDictionary *source in sources) {
             ParsingSource *parsingSource = [[ParsingSource alloc]init];
+            parsingSource.urls = [NSMutableArray array];
             [parsingSource setAttributesForObject:[source objectForKey:@"nodeAttributeArray"] classPropsFor:[ParsingSource class] obj:parsingSource];
 
             //NSLog(@"111 %@",source);
@@ -376,9 +391,9 @@
                 }
 
                 
-                [parsingSource.urls addObject:parsingUrl];
+                [[parsingSource urls] addObject:parsingUrl];
             }
-            [parsingObject.sources addObject:parsingSource];
+            [[parsingObject sources] addObject:parsingSource];
         }
         [pool addObject:parsingObject];
     }
@@ -415,11 +430,14 @@
     NSOperationQueue *queue = [[NSOperationQueue alloc]init];
     [queue setMaxConcurrentOperationCount:1];
     
-    
+
     
     for (ParsingObject *obj in pool) {
+        if ([obj.name isEqualToString:@"NSIvoObject"]) {
+            [obj main];
+        }
         NSLog(@"%@",obj.name);
-    [queue addOperation:obj];
+    //[queue addOperation:obj];
     }
     
     

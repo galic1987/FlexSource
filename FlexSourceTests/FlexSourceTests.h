@@ -9,12 +9,14 @@
 #import <SenTestingKit/SenTestingKit.h>
 #import "HTMLNode.h"
 #import "HTMLParser.h"
-#include <libxml/xmlreader.h>
-#import "XPathQuery.h"
+
+
 #import "GDataXMLNode.h"
 #import "PropertyUtil.h"
 #import "ClassTestExample.h"
 
+#import "XPathQuery.h"
+#include <libxml/xmlreader.h>
 #import "ParsingObject.h"
 #import "ParsingSource.h"
 #import "ParsingField.h"
@@ -23,6 +25,9 @@
 
 #import "NSObject+FSClassHelper.h"
 
+
+
+#import "FlexSource.h"
 
 @interface FlexSourceTests : SenTestCase
 

@@ -18,6 +18,10 @@
 -(void)main{
     NSLog(@"executing %@",name);
     
+    // 0.1 Create the object dynamically
+    NSObject * dynoObject = [[NSClassFromString(self.type) alloc] init];
+
+    
     // to be done dependencies maybe in future
     for (ParsingSource *src in self.sources) {
         for (ParsingURL *url in src.urls) {
@@ -52,13 +56,26 @@
             {
                 // Parse data here
                 
-                // 4.1 Create the object dynamically
-                id object = [[NSClassFromString(self.name) alloc] init];
                 
                 // 4.2 Go throught the fiedls und update dynamically
                 for (id field in url.fields) {
                     // check if filed or arrayfield
-                    // do the recursive call for arrayfield
+                    if([field isKindOfClass:[ParsingField class]]){
+                        ParsingField *parsingField = field;
+                        NSArray *xpathDataParsed = PerformHTMLXPathQuery(data, parsingField.xpath);
+                        if (xpathDataParsed != NULL) {
+                            NSMutableDictionary * xpathContent = [xpathDataParsed objectAtIndex:0];
+                            [dynoObject setValueForObject:xpathContent fieldName:parsingField.name classPropsFor:[dynoObject class] obj:dynoObject];
+                        }else{
+                            // error not matching file
+                            NSLog(@"cannot find xpath value for field %@ with value %@",parsingField.name,parsingField.xpath);
+                        }
+                    }else{
+                        
+                        // *** LAter
+                        // arrayfield
+                        // do the recursive call for arrayfield
+                    }
                 }
 
                 
@@ -76,6 +93,7 @@
     }
     // 6. Notify delegate object finished
 
+    
     
 }
 

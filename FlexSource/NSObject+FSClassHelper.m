@@ -37,4 +37,31 @@
 }
 
 
+
+- (void)setValueForObject:(NSDictionary *)value fieldName:(NSString*)fieldName classPropsFor:(Class)klass obj:(id)object{
+    
+    NSDictionary *listVarType= [PropertyUtil classPropsFor:klass];
+    
+   // for (NSDictionary *objectp in ar) {
+        //dynamically
+        for (NSString * key in listVarType) {
+            //     NSLog(@"---- %@",listVarType );
+            if ([fieldName isEqualToString:key]) { //matching key
+                if ([[listVarType objectForKey:key]isEqualToString:@"NSString"]) {
+                    [object setValue:[value objectForKey:@"nodeContent"] forKey:key ];
+                }else if([[listVarType objectForKey:key]isEqualToString:@"i"]){
+                    int i = [[value objectForKey:@"nodeContent"] intValue];
+                    [object setValue:[NSNumber numberWithInt:i] forKey:key ];
+                    
+                }else{
+                    // no recognized type
+                }
+            }
+        }
+        
+   // }
+    
+}
+
+
 @end

@@ -15,6 +15,11 @@
 #import "NSObject+FSClassHelper.h"
 #include <objc/objc-runtime.h>
 
+#include <libxml/xmlreader.h>
+#import "XPathQuery.h"
+
+
+
 @interface ParsingObject : NSOperation
 
 
