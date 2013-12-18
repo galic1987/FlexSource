@@ -15,7 +15,6 @@
 		4B29AE8B1841324C005C6FB9 /* ParsingFieldArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B29AE8A1841324C005C6FB9 /* ParsingFieldArray.m */; };
 		4B29AE8C1841324C005C6FB9 /* ParsingFieldArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B29AE8A1841324C005C6FB9 /* ParsingFieldArray.m */; };
 		4B318D0F17E52D7C006D359C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B318D0E17E52D7C006D359C /* Foundation.framework */; };
-		4B318D1417E52D7C006D359C /* FlexSource.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4B318D1317E52D7C006D359C /* FlexSource.h */; };
 		4B318D1617E52D7C006D359C /* FlexSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B318D1517E52D7C006D359C /* FlexSource.m */; };
 		4B318D1E17E52D7D006D359C /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B318D1D17E52D7D006D359C /* SenTestingKit.framework */; };
 		4B318D2017E52D7D006D359C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B318D1F17E52D7D006D359C /* UIKit.framework */; };
@@ -29,6 +28,10 @@
 		4B318D3E17E7ACA0006D359C /* ParsingObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B318D3C17E7ACA0006D359C /* ParsingObject.m */; };
 		4B318D4217EA5A4A006D359C /* JobObjectPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B318D4117EA5A4A006D359C /* JobObjectPool.m */; };
 		4B318D4317EA5A4A006D359C /* JobObjectPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B318D4117EA5A4A006D359C /* JobObjectPool.m */; };
+		4B56D7CE185CB7DA00A73C32 /* NSIvoObject2.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B56D7CD185CB7DA00A73C32 /* NSIvoObject2.m */; };
+		4B56D7CF185CB7DA00A73C32 /* NSIvoObject2.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B56D7CD185CB7DA00A73C32 /* NSIvoObject2.m */; };
+		4B56D7D2185CB85200A73C32 /* TestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B56D7D1185CB85200A73C32 /* TestObject.m */; };
+		4B56D7D3185CB85200A73C32 /* TestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B56D7D1185CB85200A73C32 /* TestObject.m */; };
 		4B7450C51852086E00CE39F5 /* SettingsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7450C41852086E00CE39F5 /* SettingsHelper.m */; };
 		4B7450C61852086E00CE39F5 /* SettingsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7450C41852086E00CE39F5 /* SettingsHelper.m */; };
 		4B96544018424D8D00715A23 /* NSObject+FSClassHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B96543F18424D8D00715A23 /* NSObject+FSClassHelper.m */; };
@@ -80,13 +83,12 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		4B318D0917E52D7C006D359C /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 8;
+			buildActionMask = 12;
 			dstPath = "include/${PRODUCT_NAME}";
 			dstSubfolderSpec = 16;
 			files = (
-				4B318D1417E52D7C006D359C /* FlexSource.h in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -116,12 +118,18 @@
 		4B318D3C17E7ACA0006D359C /* ParsingObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParsingObject.m; sourceTree = "<group>"; };
 		4B318D4017EA5A4A006D359C /* JobObjectPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobObjectPool.h; sourceTree = "<group>"; };
 		4B318D4117EA5A4A006D359C /* JobObjectPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobObjectPool.m; sourceTree = "<group>"; };
+		4B56D7CB185B6F0900A73C32 /* FlexSourceResponderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlexSourceResponderDelegate.h; sourceTree = "<group>"; };
+		4B56D7CC185CB7DA00A73C32 /* NSIvoObject2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSIvoObject2.h; sourceTree = "<group>"; };
+		4B56D7CD185CB7DA00A73C32 /* NSIvoObject2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSIvoObject2.m; sourceTree = "<group>"; };
+		4B56D7D0185CB85200A73C32 /* TestObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestObject.h; sourceTree = "<group>"; };
+		4B56D7D1185CB85200A73C32 /* TestObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestObject.m; sourceTree = "<group>"; };
 		4B7450C31852086E00CE39F5 /* SettingsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsHelper.h; sourceTree = "<group>"; };
 		4B7450C41852086E00CE39F5 /* SettingsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsHelper.m; sourceTree = "<group>"; };
 		4B96543E18424D8D00715A23 /* NSObject+FSClassHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+FSClassHelper.h"; sourceTree = "<group>"; };
 		4B96543F18424D8D00715A23 /* NSObject+FSClassHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+FSClassHelper.m"; sourceTree = "<group>"; };
 		4B9654431843BEE400715A23 /* NSIvoObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSIvoObject.h; sourceTree = "<group>"; };
 		4B9654441843BEE400715A23 /* NSIvoObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSIvoObject.m; sourceTree = "<group>"; };
+		4BA4F01C1860CC4A00C33D53 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4BE7D3CE17EB1F2B003445F3 /* example_rule.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = example_rule.xml; sourceTree = "<group>"; };
 		4BE7D3D017EB507B003445F3 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		4BE7D3D417EB519F003445F3 /* HTMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLNode.h; sourceTree = "<group>"; };
@@ -202,6 +210,7 @@
 		4B318D0D17E52D7C006D359C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4BA4F01C1860CC4A00C33D53 /* UIKit.framework */,
 				4BE7D3D017EB507B003445F3 /* libxml2.dylib */,
 				4B318D0E17E52D7C006D359C /* Foundation.framework */,
 				4B318D1D17E52D7D006D359C /* SenTestingKit.framework */,
@@ -274,6 +283,7 @@
 				4B29AE8618412FD2005C6FB9 /* ParsingField.m */,
 				4B29AE891841324C005C6FB9 /* ParsingFieldArray.h */,
 				4B29AE8A1841324C005C6FB9 /* ParsingFieldArray.m */,
+				4B56D7CB185B6F0900A73C32 /* FlexSourceResponderDelegate.h */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -301,6 +311,10 @@
 			children = (
 				4B9654431843BEE400715A23 /* NSIvoObject.h */,
 				4B9654441843BEE400715A23 /* NSIvoObject.m */,
+				4B56D7CC185CB7DA00A73C32 /* NSIvoObject2.h */,
+				4B56D7CD185CB7DA00A73C32 /* NSIvoObject2.m */,
+				4B56D7D0185CB85200A73C32 /* TestObject.h */,
+				4B56D7D1185CB85200A73C32 /* TestObject.m */,
 			);
 			name = Testing;
 			sourceTree = "<group>";
@@ -469,8 +483,10 @@
 				4BE7D3DF17EB75E7003445F3 /* XPathQuery.m in Sources */,
 				4BE7D3E817EB7DBF003445F3 /* GDataXMLNode.m in Sources */,
 				4BE7D3ED17EBA721003445F3 /* PropertyUtil.m in Sources */,
+				4B56D7CE185CB7DA00A73C32 /* NSIvoObject2.m in Sources */,
 				4BE7D40117EF3EB3003445F3 /* ACWebScrapingClient.m in Sources */,
 				4B29AE8718412FD2005C6FB9 /* ParsingField.m in Sources */,
+				4B56D7D2185CB85200A73C32 /* TestObject.m in Sources */,
 				4B7450C51852086E00CE39F5 /* SettingsHelper.m in Sources */,
 				4BE7D40317EF3EB3003445F3 /* ACWebScrapingOperation.m in Sources */,
 				4BE7D40517EF3EB3003445F3 /* ACWebScrapingActivityIndicatorManager.m in Sources */,
@@ -506,12 +522,14 @@
 				4BE7D40217EF3EB3003445F3 /* ACWebScrapingClient.m in Sources */,
 				4BE7D40417EF3EB3003445F3 /* ACWebScrapingOperation.m in Sources */,
 				4BE7D40617EF3EB3003445F3 /* ACWebScrapingActivityIndicatorManager.m in Sources */,
+				4B56D7D3185CB85200A73C32 /* TestObject.m in Sources */,
 				4B9654461843BEE400715A23 /* NSIvoObject.m in Sources */,
 				4BE7D40817EF3EB3003445F3 /* ACWebScraperQueue.m in Sources */,
 				4BE7D40A17EF3EB3003445F3 /* ACWebScraper.m in Sources */,
 				4BE7D40C17EF3EB3003445F3 /* NSString+Javascript.m in Sources */,
 				4BE7D40E17EF3EB3003445F3 /* UIWebView+Document.m in Sources */,
 				4B29AE8418412E8F005C6FB9 /* ParsingSource.m in Sources */,
+				4B56D7CF185CB7DA00A73C32 /* NSIvoObject2.m in Sources */,
 				4B29AE8C1841324C005C6FB9 /* ParsingFieldArray.m in Sources */,
 				4BE7D41317EF46C0003445F3 /* ParsingURL.m in Sources */,
 			);

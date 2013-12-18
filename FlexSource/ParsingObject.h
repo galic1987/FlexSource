@@ -14,13 +14,21 @@
 #import "ParsingFieldArray.h"
 #import "NSObject+FSClassHelper.h"
 #include <objc/objc-runtime.h>
-
 #include <libxml/xmlreader.h>
 #import "XPathQuery.h"
+#import "FlexSourceResponderDelegate.h"
+#import <libxml/tree.h>
+#import <libxml/parser.h>
+#import <libxml/HTMLparser.h>
+#import <libxml/xpath.h>
+#import <libxml/xpathInternals.h>
+
+#import <UIKit/UIKit.h>
 
 
 
-@interface ParsingObject : NSOperation
+
+@interface ParsingObject : NSOperation <UIWebViewDelegate>
 
 
 @property (nonatomic, retain) NSString * type;
@@ -28,6 +36,24 @@
 @property int priority;
 @property (nonatomic, retain) NSString * loading;
 @property (nonatomic, retain) NSMutableArray  * sources;
+
+// status of parsing object
+@property (nonatomic, retain) NSDate * lastUpdate;
+@property (nonatomic, retain) NSString * status;
+@property (nonatomic, retain) NSString * message;
+
+// settings
+@property BOOL log;
+
+// delegate // finished or error
+@property (assign) id <FlexSourceResponderDelegate> delegate;
+
+
+// js support
+@property (strong) UIWebView *webview;
+
+
+
 
 + (NSMutableArray*) createParsingField:(NSArray*)fields;
 

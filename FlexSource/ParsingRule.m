@@ -38,7 +38,7 @@
 
 +(NSMutableArray*)parseRule:(NSData*)content{
     
-    NSLog(@"Content: %@", content);
+    //NSLog(@"Content: %@", content);
     
     
     // Summary
@@ -130,7 +130,7 @@
     }
     
     
-    NSLog(@" %@ ",pool);
+    if (log) NSLog(@"Objects in pool %@ ",pool);
     
     
     // 3. preparation work (part of parser)

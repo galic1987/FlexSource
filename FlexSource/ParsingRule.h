@@ -35,7 +35,7 @@
 @property (nonatomic,retain) NSData *ruleRaw;
 
 
-
+@property (nonatomic)BOOL log;
 
 // return objectPool
 +(NSMutableArray*)parseRule:(NSData*)content;

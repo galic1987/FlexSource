@@ -10,8 +10,9 @@
 #import "ParsingRule.h"
 #import "ParsingObject.h"
 #import "SettingsHelper.h"
+#import "FlexSourceResponderDelegate.h"
 
-@interface FlexSource : NSObject
+@interface FlexSource : NSObject <FlexSourceResponderDelegate>
 
 // finished objects parsed from internet
 @property (nonatomic,retain) NSMutableDictionary *resultPool;
@@ -52,6 +53,10 @@
 
 // delegate
 @property (assign) id delegate;
+
+-(void)finishedObjectWithId:(NSString*)resourceID theObject:(NSObject*)object withStatus:(NSString*)status withMessage:(NSString*)message;
+
+-(void)errorOnObjectWithId:(NSString*)resourceID theObject:(NSObject*)object withStatus:(NSString*)status withMessage:(NSString*)message;
 
 
 

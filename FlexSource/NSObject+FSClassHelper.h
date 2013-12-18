@@ -14,4 +14,7 @@
 - (void)setAttributesForObject:(NSArray *)ar classPropsFor:(Class)klass obj:(id)object;
 - (void)setValueForObject:(NSDictionary *)value fieldName:(NSString*)fieldName classPropsFor:(Class)klass obj:(id)object;
 
+- (void)setValueForObjectDirect:(NSString *)value fieldName:(NSString*)fieldName classPropsFor:(Class)klass obj:(id)object;
+
+
 @end

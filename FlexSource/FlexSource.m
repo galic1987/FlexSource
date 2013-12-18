@@ -9,7 +9,7 @@
 #import "FlexSource.h"
 
 @implementation FlexSource
-@synthesize objectPool,resultPool,ruleUrls,currentRule,numberOfThreads,frameworkVersion;
+@synthesize objectPool,resultPool,ruleUrls,currentRule,numberOfThreads,frameworkVersion,log,delegate;
 
 
 // 1. init
@@ -21,10 +21,13 @@
         objectPool = [[NSMutableArray  alloc]init];
         resultPool = [[NSMutableDictionary  alloc]init];
         
-        
+
         numberOfThreads = [[SettingsHelper get:@"numberOfThreads"] integerValue];
         
         frameworkVersion = [[SettingsHelper get:@"frameworkVersion"] integerValue];
+        
+        //****** load rule from sandbox
+
         
         if (ruleUrl == nil) {
             ruleUrl = [SettingsHelper get:@"baseRuleURL"];
@@ -48,6 +51,8 @@
         numberOfThreads = [[SettingsHelper get:@"numberOfThreads"] integerValue];
         
         frameworkVersion = [[SettingsHelper get:@"frameworkVersion"] integerValue];
+        
+        //****** load rule from sandbox
         
         
         if ([ruleUrls count]==0) {
@@ -73,6 +78,9 @@
     for (NSURL *u in ruleUrls) {
         // 1.1 download file --> blocking need to fix
         NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:u ];
+        if (log) {
+            NSLog(@"Starting with url rule %@",u.absoluteString);
+        }
         NSURLResponse * response = nil;
         NSError * error = nil;
         NSData * data = [NSURLConnection sendSynchronousRequest:request
@@ -98,6 +106,7 @@
             
             // ******* MAKE TRY
             NSMutableArray *ar = [ParsingRule parseRule:data];
+            
             if (ar == nil || [ar count] == 0 ) {
                 // ***** PARSER FAIL
             }else{
@@ -108,15 +117,19 @@
                 r.url = u;
                 r.v = [ParsingRule getVersion:data];
                 
-                objectPool = ar;
-                currentRule = r;
+                objectPool = ar; //put objects in objectpool
+                currentRule = r; // put new rule
+                NSLog(@"Using rule with url %@",u.absoluteString);
+
+                
+                // ***** trigger save rule to sandbox
                 
                 return;
             }
             
             // ** UNKNOWN FAIL
         }else{
-           if(log) NSLog(@"%@",error);
+           if(log) NSLog(@"%@",[error localizedDescription]);
             // **************** MISSING ERROR HANDLING
         }
         
@@ -137,15 +150,45 @@
     [queue setMaxConcurrentOperationCount:numberOfThreads];
     
     //***** ADD Delegate notifier
+    for (ParsingObject *o in objectPool) {
+        o.delegate = self;
+    }
+    
     
     for (ParsingObject *obj in objectPool) {
-        if ([obj.name isEqualToString:@"NSIvoObject"]) {
+        
+        
+        if ([obj.type isEqualToString:@"NSIvoObject2"]) {
             [obj main];
         }
-        NSLog(@"%@",obj.name);
+       if (log) NSLog(@"Adding object to queue %@",obj.name);
         //[queue addOperation:obj];
+        
     }
 
+}
+
+
+# pragma mark Delegate
+
+-(void)finishedObjectWithId:(NSString*)resourceID theObject:(NSObject*)object withStatus:(NSString*)status withMessage:(NSString*)message{
+    
+    [resultPool setObject:object forKey:resourceID];
+    
+    if (log) {
+        NSLog(@"FX %@%@%@%@",resourceID,object,status,message);
+    }
+    [delegate finishedObjectWithId:resourceID theObject:object withStatus:status withMessage:message];
+    
+}
+
+-(void)errorOnObjectWithId:(NSString*)resourceID theObject:(NSObject*)object withStatus:(NSString*)status withMessage:(NSString*)message{
+    
+    if (log) {
+        NSLog(@"FX %@%@%@%@",resourceID,object,status,message);
+    }
+    [delegate errorOnObjectWithId:resourceID theObject:object withStatus:status withMessage:message];
+    
 }
 
 

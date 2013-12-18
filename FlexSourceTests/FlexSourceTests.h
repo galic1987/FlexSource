@@ -24,11 +24,10 @@
 #import "ParsingFieldArray.h"
 
 #import "NSObject+FSClassHelper.h"
-
-
-
 #import "FlexSource.h"
+#import "NSIvoObject.h"
+#import <UIKit/UIKit.h>
 
-@interface FlexSourceTests : SenTestCase
+@interface FlexSourceTests : SenTestCase <FlexSourceResponderDelegate>
 
 @end

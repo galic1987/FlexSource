@@ -7,14 +7,25 @@
 //
 
 #import "FlexSourceTests.h"
+//UIApplication *delegate;
 
+
+   UIApplication       *app;
 @implementation FlexSourceTests
+
+
 
 - (void)setUp
 {
+    
+    
+       app                  = [UIApplication sharedApplication];
+
     [super setUp];
     
     // Set-up code here.
+   // delegate = [[UIApplication sharedApplication] delegate];
+
 }
 
 - (void)tearDown
@@ -26,13 +37,53 @@
 
 
 -(void)testFlexSource{
+    
+  //  UIWebView *ui = [[UIWebView alloc]init];
+    STAssertNotNil(app, @"UIApplication failed to find the AppDelegate");
+
+    
+    
     FlexSource *fx = [[FlexSource alloc]initWithRuleUrl:nil];
+    fx.log = YES;
     [fx updateRules];
     
+    
+    
+    NSDate *fiveSecondsFromNow = [NSDate dateWithTimeIntervalSinceNow:15.0];
+    
+    fx.delegate = self;
     // delegate method include
     [fx parse];
     
+    [[NSRunLoop currentRunLoop] runUntilDate:fiveSecondsFromNow];
+
+    
 }
+
+
+-(void)finishedObjectWithId:(NSString*)resourceID theObject:(NSObject*)object withStatus:(NSString*)status withMessage:(NSString*)message{
+        NSLog(@"TS %@%@%@%@",resourceID,object,status,message);
+    
+    // indirect
+    // 1. getObject from dictionary with objectId after some flag
+    // 2. autoconnect etc...
+    
+    // direct
+    // 1. cast object to expected object and connect to gui
+    // 2. autoconnect gui via samenaming mechanism setter
+}
+
+-(void)errorOnObjectWithId:(NSString*)resourceID theObject:(NSObject*)object withStatus:(NSString*)status withMessage:(NSString*)message{
+    
+        NSLog(@"TS %@%@%@%@",resourceID,object,status,message);
+    
+}
+
+
+
+
+
+
 
 
 
