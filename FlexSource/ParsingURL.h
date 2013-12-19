@@ -17,5 +17,7 @@
 
 @property (nonatomic, retain) NSMutableArray * fields;
 
+@property int javascript;
+@property int waitJSComputation;
 
 @end

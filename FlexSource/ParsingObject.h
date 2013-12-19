@@ -28,7 +28,7 @@
 
 
 
-@interface ParsingObject : NSOperation <UIWebViewDelegate>
+@interface ParsingObject : NSOperation <UIWebViewDelegate,NSURLConnectionDataDelegate>
 
 
 @property (nonatomic, retain) NSString * type;
@@ -51,6 +51,10 @@
 
 // js support
 @property (strong) UIWebView *webview;
+
+
+
+// data
 
 
 

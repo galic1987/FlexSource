@@ -158,11 +158,11 @@
     for (ParsingObject *obj in objectPool) {
         
         
-        if ([obj.type isEqualToString:@"NSIvoObject2"]) {
-            [obj main];
-        }
+//        if ([obj.type isEqualToString:@"NSIvoObject2"]) {
+//            [obj main];
+//        }
        if (log) NSLog(@"Adding object to queue %@",obj.name);
-        //[queue addOperation:obj];
+        [queue addOperation:obj];
         
     }
 

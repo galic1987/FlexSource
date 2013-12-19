@@ -9,5 +9,5 @@
 #import "ParsingURL.h"
 
 @implementation ParsingURL
-@synthesize fields,headers,step,uri;
+@synthesize fields,headers,step,uri,javascript,waitJSComputation;
 @end

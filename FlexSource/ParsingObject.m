@@ -13,6 +13,8 @@
 @synthesize webview = _webview;
 
 
+
+
 -(void)main{
     if(log) NSLog(@"executing object with resourceId %@",name);
     
@@ -50,49 +52,88 @@
             
             // 3. start evaluation
             
-            NSURLResponse * response = nil;
-            NSError * error = nil;
-            NSData * data = [NSURLConnection sendSynchronousRequest:request
-                                                  returningResponse:&response
-                                                              error:&error];
+            [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+            {
+                if (error == nil){
+                    NSObject* dynoObject;
+
+                    
+                    if (url.javascript < 1) {
+                        // 3.1 if js disabled just start parsing
+                        if (log) {
+                            NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
+                            NSLog(@"%i",[httpResponse statusCode]);
+                        }
+                        
+                        
+                    }else{
+                        // 3.2 if js enabled load webview and wait time for load
+                        // js support and without
+                        [self webview];
+                        
+                        [_webview  loadData:data MIMEType: @"text/html" textEncodingName: @"UTF-8" baseURL:uri];
+                        //[_webview loadRequest:request];
+                        NSDate *wait = [NSDate dateWithTimeIntervalSinceNow:url.waitJSComputation];
+                        
+                        [[NSRunLoop currentRunLoop] runUntilDate:wait];
+                        
+                        NSString *newData = [_webview stringByEvaluatingJavaScriptFromString:@"document.documentElement.outerHTML"];
+                        data =  [newData dataUsingEncoding:NSUTF8StringEncoding];
+                        
+                    }
+                    
+                    // Parse data here
+                    status = @"parsing";
+
+                    // 4.2 Go throught the fiedls und update dynamically
+                    dynoObject = [ParsingObject parsing:data withFields:url.fields klass:self.type withXpathCtx:NULL];
+                    
+                    if (dynoObject == nil) {
+                        // 3.3 error
+                        if (log) {
+                            NSLog(@"Parser error object is nil");
+                        }
+                        
+                        status = @"ParserError";
+                        [delegate errorOnObjectWithId:name theObject:nil withStatus:status withMessage:[error localizedDescription]];
+                        return;
+                    }
+                    
+                    // 6. Notify delegate object finished
+                    // send resource ID (key)
+                    // dynoobject (object)
+                    // send status (
+                    // send message (
+                    // set date
+                    
+                    if(log) NSLog(@"returning finished object with resourceId %@",name);
+                    status = @"finished";
+                    lastUpdate = [NSDate date];
+                    [delegate finishedObjectWithId:name theObject:dynoObject withStatus:status withMessage:@"OK"];
+                    
+                }else {
+                    
+                    // 3.3 error
+                    if (log) {
+                        NSLog(@"Request error %@",[error localizedDescription]);
+                    }
+                    
+                    status = @"requestError";
+                    [delegate errorOnObjectWithId:name theObject:nil withStatus:status withMessage:[error localizedDescription]];
+                }
+            }];
+             /*   NSData * data = [NSURLConnection sendSynchronousRequest:request
+                                                  returningResponse:&_response
+                                                              error:&_error];
+            */
             
-            if (log) {
-                         NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
-                NSLog(@"%i",[httpResponse statusCode]);
-            }
             
             
-            // js support and without
-         //   [self webview];
-         //   [_webview loadRequest:request];
+            
+            
             
             
             // 4. finish put it to fields
-            if (error == nil)
-            {
-                // Parse data here
-                status = @"parsing";
-                
-                
-                // 4.2 Go throught the fiedls und update dynamically
-                 dynoObject = [ParsingObject parsing:data withFields:url.fields klass:self.type withXpathCtx:NULL];
-
-                
-                
-                // X 4.3 Notify delegate url finished
-                
-            }else{
-                //  ERROR HANDLING
-                
-                if (log) {
-                    NSLog(@"Parser error %@",[error localizedDescription]);
-                }
-                
-                status = @"requestError";
-                [delegate errorOnObjectWithId:name theObject:nil withStatus:status withMessage:[error localizedDescription]];
-                
-                
-            }
             
             
             
@@ -101,44 +142,40 @@
         
     }
     
-    // 6. Notify delegate object finished
-    // send resource ID (key)
-    // dynoobject (object)
-    // send status (
-    // send message (
-    // set date
-    if(log) NSLog(@"returning finished object with resourceId %@",name);
-    status = @"finished";
-    lastUpdate = [NSDate date];
-    [delegate finishedObjectWithId:name theObject:dynoObject withStatus:status withMessage:@"OK"];
-    
-    
-    
     
 }
 
-
+#pragma mark content finished loading
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
+    
         NSString *yourHTMLSourceCodeString = [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.outerHTML"];
-    NSLog(@"%@",yourHTMLSourceCodeString);
+   // NSLog(@"****** %@",yourHTMLSourceCodeString);
 }
 
 
+
+
+
+#pragma mark parser
 
 + (NSObject*) parsing:(NSData*)document withFields:(NSArray*)fields klass:(NSString*)klass  withXpathCtx:(xmlXPathContextPtr)xpathCtx{
     
     xmlDocPtr doc;
+    BOOL root;
     
     // 0. get object
    // NSObject * object = *objectPtr;
     NSObject * object = [[NSClassFromString(klass) alloc] init];
 
-    if(log) NSLog(@"RAW DATA %@",[NSString stringWithUTF8String:[document bytes]]);
+    //if(log) NSLog(@"RAW DATA %@",[NSString stringWithUTF8String:[document bytes]]);
     /* Load XML document */
     if (xpathCtx == NULL) {
+        root = YES;
         doc = htmlReadMemory([document bytes], [document length], "", NULL, HTML_PARSE_NOWARNING | HTML_PARSE_NOERROR);
     }else{
         doc = xpathCtx->doc;
+        root = NO;
+
     }
 	
     if (doc == NULL)
@@ -147,8 +184,6 @@
 		return nil;
     }
 	
-	//NSArray *result = PerformXPathQuery(doc, query);
-    //xmlXPathContextPtr xpathCtx;
     xmlXPathObjectPtr xpathObj;
     
     /* Create xpath evaluation context */
@@ -186,11 +221,13 @@
                 return nil;
             }
             
+            
             for (NSInteger i = 0; i < nodes->nodeNr; i++)
             {
                 
                 xmlNodePtr currentNode = nodes->nodeTab[i];
-                
+               // printCurrentNode(doc, currentNode);
+
                 if (currentNode->name)
                 {
                     NSString *currentNodeContent =
@@ -251,20 +288,8 @@
                 xmlNodePtr childNode = currentNode->children;
                 if (childNode)
                 {
-                    NSMutableArray *childContentArray = [NSMutableArray array];
-                    while (childNode)
-                    {
-                       // NSDictionary *childDictionary = DictionaryForNode(childNode, resultForNode);
-//                        if (childDictionary)
-//                        {
-//                            [childContentArray addObject:childDictionary];
-//                        }
-//                        childNode = childNode->next;
-                    }
-                    if ([childContentArray count] > 0)
-                    {
-                       // [resultForNode setObject:childContentArray forKey:@"nodeChildArray"];
-                    }
+
+
                 }
 
                 
@@ -312,12 +337,29 @@
                 
                 xmlNodePtr currentNode = nodes->nodeTab[i];
 
-                xmlXPathContextPtr xpContext = xmlXPathNewContext((xmlDocPtr)currentNode);
                 
-                NSObject * recursionIncoming = [ParsingObject parsing:document withFields:p.fieldArray klass:p.type withXpathCtx:xpContext];
+                printCurrentNode(doc, currentNode);
+                
+                
+                
+
+               // xmlXPathContextPtr xpContext = xmlXPathNewContext(currentNode->doc);
+                // save node
+                xmlNodePtr save = xpathCtx->node;
+                xpathCtx->node = currentNode;
+                
+                NSObject * recursionIncoming = [ParsingObject parsing:document withFields:newFields klass:p.type withXpathCtx:xpathCtx];
+                
+               // xmlXPathFreeContext(xpContext);
+                xpathCtx->node = save;
+
                 
                 // add it to array
-                [ar addObject:recursionIncoming];
+                if (recursionIncoming!=nil) {
+                    [ar addObject:recursionIncoming];
+
+                }
+                
                 
             
             }
@@ -326,16 +368,33 @@
         }
     }
     
-   
+    if(root){
     xmlXPathFreeObject(xpathObj);
     xmlXPathFreeContext(xpathCtx);
     xmlFreeDoc(doc);
+    }
     return object;
     
     
 }
 
+void printCurrentNode(xmlDocPtr doc, xmlNodePtr node){
+    xmlBufferPtr nodeBuffer = xmlBufferCreate();
+    xmlNodeDump(nodeBuffer, doc, node, 0, 1);
+    // ... Do something with nodeBuffer->content
+    
+    if (nodeBuffer->content )
+    {
+        NSString *currentNodeContent =
+        [NSString stringWithCString:(const char *)nodeBuffer->content encoding:NSUTF8StringEncoding];
+        NSLog(@"Node Content ***** %@",currentNodeContent);
+        
+        
+    }
+    xmlBufferFree(nodeBuffer);
+}
 
+// move to Parsing Rule
 + (NSMutableArray*) createParsingField:(NSArray*)fields{
     /// recursive part start
     NSMutableArray *myFields = [[NSMutableArray alloc]init];
@@ -353,6 +412,7 @@
             
         }else if([[field objectForKey:@"nodeName"]isEqualToString:@"arrayfield"]) {
             ParsingFieldArray *pfa = [[ParsingFieldArray alloc]init];
+           // pfa.fieldArray = [NSMutableArray array];
             [pfa setAttributesForObject:[field objectForKey:@"nodeAttributeArray"] classPropsFor:[ParsingFieldArray class] obj:pfa];
             
             NSArray *arrayFields = [field objectForKey:@"nodeChildArray"];
@@ -364,7 +424,9 @@
                     pfa.xpath =[arrayFieldChild objectForKey:@"nodeContent"];
                 }else if([[arrayFieldChild objectForKey:@"nodeName"]isEqualToString:@"arrayobject"]) {
                     // ------> recursive field call
-                    [pfa.fieldArray addObject:[ParsingObject createParsingField:[arrayFieldChild objectForKey:@"nodeChildArray"]]];
+                    NSLog(@"%@",[arrayFieldChild objectForKey:@"nodeChildArray"]);
+                    
+                    pfa.fieldArray = [ParsingObject createParsingField:[arrayFieldChild objectForKey:@"nodeChildArray"]];
                 }else{
                     // error
                 }
@@ -411,7 +473,6 @@
     }
     return _webview;
 }
-
 
 
 @end

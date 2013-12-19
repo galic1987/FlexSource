@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>FSTestingHelper.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>FlexSource.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -18,6 +23,16 @@
 			<true/>
 		</dict>
 		<key>4B318D1B17E52D7D006D359C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4BA4F05C1862229000C33D53</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4BA4F0731862229000C33D53</key>
 		<dict>
 			<key>primary</key>
 			<true/>

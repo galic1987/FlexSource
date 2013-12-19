@@ -19,10 +19,10 @@
 {
     
     
-       app                  = [UIApplication sharedApplication];
 
     [super setUp];
-    
+    app                  = [UIApplication sharedApplication];
+
     // Set-up code here.
    // delegate = [[UIApplication sharedApplication] delegate];
 
@@ -38,10 +38,10 @@
 
 -(void)testFlexSource{
     
-  //  UIWebView *ui = [[UIWebView alloc]init];
-    STAssertNotNil(app, @"UIApplication failed to find the AppDelegate");
+    UIWebView *ui = [[UIWebView alloc]init];
+    //STAssertNotNil(app, @"UIApplication failed to find the AppDelegate");
 
-    
+
     
     FlexSource *fx = [[FlexSource alloc]initWithRuleUrl:nil];
     fx.log = YES;
