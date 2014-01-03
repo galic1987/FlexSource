@@ -10,5 +10,5 @@
 
 @implementation ParsingField
 
-@synthesize type,name,xpath;
+@synthesize type,name,xpath,expectedValue;
 @end

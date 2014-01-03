@@ -16,7 +16,9 @@
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * type; //string or array
 @property (nonatomic, retain) NSString * xpath;
-//@property (nonatomic, retain) ParsingFieldArray * parsingFieldArray; // can be nil if no
+
+// this has value only if this is test
+@property (nonatomic, retain) NSString * expectedValue;
 
 
 

@@ -8,8 +8,6 @@
 #import "HTMLNode.h"
 #import "HTMLParser.h"
 
-
-#import "GDataXMLNode.h"
 #import "PropertyUtil.h"
 #import "ClassTestExample.h"
 
@@ -95,6 +93,15 @@
     
 }
 
+
+-(void)failedParsing:(NSString*)description{
+    
+}
+
+// test delegates
+-(void)testResultOnObject:(NSMutableArray *)objects result:(BOOL)result msg:(NSString*)msg{
+    
+}
 
 
 

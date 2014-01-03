@@ -54,10 +54,14 @@
 // delegate
 @property (assign) id delegate;
 
+// delegate methods
+-(void)failedParsing:(NSString*)description;
+
 -(void)finishedObjectWithId:(NSString*)resourceID theObject:(NSObject*)object withStatus:(NSString*)status withMessage:(NSString*)message;
 
 -(void)errorOnObjectWithId:(NSString*)resourceID theObject:(NSObject*)object withStatus:(NSString*)status withMessage:(NSString*)message;
 
+-(void)testResultOnObject:(NSMutableArray *)objects result:(BOOL)result msg:(NSString *)msg;
 
 
 @end

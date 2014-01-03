@@ -11,7 +11,7 @@
 @implementation ParsingFieldArray
 
 
-@synthesize name,type,loading,fieldArray,xpath;
+@synthesize name,type,loading,fieldArray,xpath,endOffset,startOffset;
 
 
 @end

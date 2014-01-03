@@ -109,6 +109,7 @@
             
             if (ar == nil || [ar count] == 0 ) {
                 // ***** PARSER FAIL
+                [self failedParsing:currentRule.url.path];
             }else{
                 // Parser OK
 
@@ -131,6 +132,8 @@
         }else{
            if(log) NSLog(@"%@",[error localizedDescription]);
             // **************** MISSING ERROR HANDLING
+            [self failedParsing:currentRule.url.path];
+
         }
         
         
@@ -176,7 +179,7 @@
     [resultPool setObject:object forKey:resourceID];
     
     if (log) {
-        NSLog(@"FX %@%@%@%@",resourceID,object,status,message);
+        NSLog(@"FX ok %@%@%@%@",resourceID,object,status,message);
     }
     [delegate finishedObjectWithId:resourceID theObject:object withStatus:status withMessage:message];
     
@@ -185,11 +188,36 @@
 -(void)errorOnObjectWithId:(NSString*)resourceID theObject:(NSObject*)object withStatus:(NSString*)status withMessage:(NSString*)message{
     
     if (log) {
-        NSLog(@"FX %@%@%@%@",resourceID,object,status,message);
+        NSLog(@"FX error %@%@%@%@",resourceID,object,status,message);
     }
     [delegate errorOnObjectWithId:resourceID theObject:object withStatus:status withMessage:message];
     
 }
+
+-(void)failedParsing:(NSString*)description{
+    
+    if (log) {
+        NSLog(@"Parsing fail %@",description);
+    }
+    
+    [delegate failedParsing:description];
+}
+
+
+-(void)testResultOnObject:(NSMutableArray *)objects result:(BOOL)result msg:(NSString*)msg{
+    for (ParsingTest *object in objects) {
+
+        if (log) {
+        NSLog(@"Test log \n Result:%@ \n Xpath:%@ \n Expected value:%@ \n Current value: %@ \n NodeBuffer: %@",object.result, object.xpath,object.expectedValue,object.currentValue,object.xpathParsingBuffer);
+        }
+    }
+    [delegate testResultOnObject:objects result:result msg:msg];
+    
+}
+
+
+
+
 
 
 

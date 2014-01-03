@@ -12,6 +12,8 @@
 #import "ParsingURL.h"
 #import "ParsingField.h"
 #import "ParsingFieldArray.h"
+#import "ParsingTest.h"
+
 #import "NSObject+FSClassHelper.h"
 #include <objc/objc-runtime.h>
 #include <libxml/xmlreader.h>
@@ -59,6 +61,5 @@
 
 
 
-+ (NSMutableArray*) createParsingField:(NSArray*)fields;
 
 @end

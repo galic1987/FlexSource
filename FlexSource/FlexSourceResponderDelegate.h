@@ -10,8 +10,15 @@
 
 @protocol FlexSourceResponderDelegate <NSObject>
 
+
+// finished delegates
 -(void)finishedObjectWithId:(NSString*)resourceID theObject:(NSObject*)object withStatus:(NSString*)status withMessage:(NSString*)message;
 
+// error delegates
 -(void)errorOnObjectWithId:(NSString*)resourceID theObject:(NSObject*)object withStatus:(NSString*)status withMessage:(NSString*)message;
+-(void)failedParsing:(NSString*)description;
+
+// test delegates
+-(void)testResultOnObject:(NSMutableArray *)objects result:(BOOL)result msg:(NSString*)msg;
 
 @end

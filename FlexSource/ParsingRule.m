@@ -109,7 +109,8 @@
                         
                     }else if([[urlChild objectForKey:@"nodeName"]isEqualToString:@"fields"]){
                         NSArray *fields = [urlChild objectForKey:@"nodeChildArray"];
-                        parsingUrl.fields = [ParsingObject createParsingField:fields];
+                        parsingUrl.fields = [ParsingRule
+                                             createParsingField:fields];
                         // NSLog(@"field %@",urlChild);
                         
                         
@@ -154,5 +155,61 @@
     return pool;
     
 }
+
+
+// move to Parsing Rule
++ (NSMutableArray*) createParsingField:(NSArray*)fields{
+    /// recursive part start
+    NSMutableArray *myFields = [[NSMutableArray alloc]init];
+    for (NSDictionary *field in fields) {
+        // ---> 2.5 start another loop array for type array field
+        //NSArray *field = [field objectForKey:@"fields"];
+        //for (NSDictionary *field in fields) {
+        //NSLog(@"add field %@",field);
+        if ([[field objectForKey:@"nodeName"]isEqualToString:@"field"]) {
+            if(log) NSLog(@"field content %@",[field objectForKey:@"nodeContent"]);
+            ParsingField *pf = [[ParsingField alloc]init];
+            [pf setAttributesForObject:[field objectForKey:@"nodeAttributeArray"] classPropsFor:[ParsingField class] obj:pf];
+            pf.xpath =[field objectForKey:@"nodeContent"];
+            [myFields addObject:pf];
+            
+        }else if([[field objectForKey:@"nodeName"]isEqualToString:@"arrayfield"]) {
+            ParsingFieldArray *pfa = [[ParsingFieldArray alloc]init];
+            // pfa.fieldArray = [NSMutableArray array];
+            [pfa setAttributesForObject:[field objectForKey:@"nodeAttributeArray"] classPropsFor:[ParsingFieldArray class] obj:pfa];
+            
+            NSArray *arrayFields = [field objectForKey:@"nodeChildArray"];
+            for (NSDictionary *arrayFieldChild in arrayFields) {
+                
+                
+                if ([[arrayFieldChild objectForKey:@"nodeName"]isEqualToString:@"xpath"]) {
+                    if(log) NSLog(@"xpath content %@",[arrayFieldChild objectForKey:@"nodeContent"]);
+                    pfa.xpath =[arrayFieldChild objectForKey:@"nodeContent"];
+                }else if([[arrayFieldChild objectForKey:@"nodeName"]isEqualToString:@"arrayobject"]) {
+                    // ------> recursive field call
+                    NSLog(@"%@",[arrayFieldChild objectForKey:@"nodeChildArray"]);
+                    
+                    pfa.fieldArray = [ParsingRule createParsingField:[arrayFieldChild objectForKey:@"nodeChildArray"]];
+                }else{
+                    // error
+                }
+                
+            }
+            [myFields addObject:pfa];
+            
+            
+        }else{
+            // error
+        }
+        //}
+        
+        
+    }
+    // recursive part end
+    return myFields;
+    
+}
+
+
 
 @end

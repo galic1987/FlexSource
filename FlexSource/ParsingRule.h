@@ -41,6 +41,7 @@
 +(NSMutableArray*)parseRule:(NSData*)content;
 +(BOOL)checkNewFileVersion:(double)version parseRule:(NSData*)content;
 +(double)getVersion:(NSData*)content;
++ (NSMutableArray*) createParsingField:(NSArray*)fields;
 
 
 

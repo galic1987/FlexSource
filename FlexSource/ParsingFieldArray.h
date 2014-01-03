@@ -15,6 +15,8 @@
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * loading;
 @property (nonatomic, retain) NSString * xpath;
+@property (nonatomic) int startOffset;
+@property (nonatomic) int endOffset;
 
 
 

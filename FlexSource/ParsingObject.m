@@ -90,12 +90,19 @@
                     
                     if (dynoObject == nil) {
                         // 3.3 error
+                        
+                        status = @"ParserError";
                         if (log) {
                             NSLog(@"Parser error object is nil");
                         }
                         
-                        status = @"ParserError";
-                        [delegate errorOnObjectWithId:name theObject:nil withStatus:status withMessage:[error localizedDescription]];
+                        if ([type isEqualToString:@"Test"]) {
+                            // this is test so return test failed
+                            [delegate testResultOnObject:nil result:NO msg:@"Test failed to build object"];
+                            return ;
+                        }
+                        
+                        [delegate errorOnObjectWithId:name theObject:nil withStatus:status withMessage:@"Parser failed to build object"];
                         return;
                     }
                     
@@ -109,7 +116,19 @@
                     if(log) NSLog(@"returning finished object with resourceId %@",name);
                     status = @"finished";
                     lastUpdate = [NSDate date];
-                    [delegate finishedObjectWithId:name theObject:dynoObject withStatus:status withMessage:@"OK"];
+                    
+                    // test finish
+                    if ([type isEqualToString:@"Test"]) {
+                        NSMutableArray *testObjects = (NSMutableArray *)dynoObject;
+                        
+                        
+                        [delegate testResultOnObject:testObjects result:YES msg:@"Test"];
+
+                    }else{
+                        // normal finish
+                        [delegate finishedObjectWithId:name theObject:dynoObject withStatus:status withMessage:@"OK"];
+                    }
+                    
                     
                 }else {
                     
@@ -119,6 +138,13 @@
                     }
                     
                     status = @"requestError";
+                    
+                    if ([type isEqualToString:@"Test"]) {
+                        // this is test so return test failed
+                        [delegate testResultOnObject:nil result:NO msg:[error localizedDescription]];
+                        return ;
+                    }
+                    
                     [delegate errorOnObjectWithId:name theObject:nil withStatus:status withMessage:[error localizedDescription]];
                 }
             }];
@@ -165,7 +191,15 @@
     
     // 0. get object
    // NSObject * object = *objectPtr;
-    NSObject * object = [[NSClassFromString(klass) alloc] init];
+    NSObject * object = nil;
+    NSMutableArray *testArray = nil;
+    
+    if ([klass isEqualToString:@"Test"]) {
+        object = [[ParsingTest alloc]init];
+        testArray = [NSMutableArray array];
+    }else{
+        object = [[NSClassFromString(klass) alloc] init];
+    }
 
     //if(log) NSLog(@"RAW DATA %@",[NSString stringWithUTF8String:[document bytes]]);
     /* Load XML document */
@@ -199,7 +233,8 @@
     }
     
     // 1. start loop
-   
+    
+    
     for (id field in fields) {
         // check if filed or arrayfield
         if([field isKindOfClass:[ParsingField class]]){
@@ -233,7 +268,7 @@
                     NSString *currentNodeContent =
                     [NSString stringWithCString:(const char *)currentNode->name encoding:NSUTF8StringEncoding];
                     
-                    NSLog(@"Node name ***** %@",currentNodeContent);
+                   if(log) NSLog(@"Node name ***** %@",currentNodeContent);
                 }
 
                 //NSLog(@"***** %@",currentNode->type);
@@ -242,12 +277,41 @@
                 {
                     NSString *currentNodeContent =
                     [NSString stringWithCString:(const char *)currentNode->content encoding:NSUTF8StringEncoding];
-                    NSLog(@"Node Content ***** %@",currentNodeContent);
-                    // other object types to come -> pictures etc
-                    [object setValueForObjectDirect:currentNodeContent fieldName:parsingField.name classPropsFor:[object class] obj:object];
-                    break;
+                    if (log) NSLog(@"Node Content ***** %@",currentNodeContent);
+                    
+                    /// TESTING PROCEDURE
+                    if ([klass isEqualToString:@"Test"]) {
+                        // do testing return
+                        
+                        //                            // collect following data: date, current parsing object, current & expected value, xpath Buffer, give it to ParsingTest
+                        ParsingTest *testObject = (ParsingTest*)object;
+                        testObject.date = [NSDate date];
+                        testObject.expectedValue = parsingField.expectedValue;
+                        testObject.xpath = parsingField.xpath;
+                        testObject.currentValue = currentNodeContent;
+                        testObject.xpathParsingBuffer = getCurrentNodeBuffer(doc, currentNode);
+
+                        if ([testObject.currentValue isEqualToString:testObject.expectedValue]) {
+                            testObject.result = @"OK";
+                        }else{
+                            testObject.result = @"FAIL";
+                        }
+                        
+                        
+                        [testArray addObject:testObject];
+                        
+                        break;
+                        
+                    }else{
+                        // Standard dynamic assigment to objects
+                        // other object types to come -> pictures etc
+                        [object setValueForObjectDirect:currentNodeContent fieldName:parsingField.name classPropsFor:[object class] obj:object];
+                        break;
+                    }
                     
                 }
+                
+               /* 
                 
                 xmlAttr *attribute = currentNode->properties;
                 if (attribute)
@@ -291,6 +355,8 @@
 
 
                 }
+                
+                */
 
                 
                 
@@ -332,7 +398,28 @@
                 return nil;
             }
             
-            for (NSInteger i = 0; i < nodes->nodeNr; i++)
+            
+            
+            // implement offset
+            int start = 0;
+            int end = nodes->nodeNr;
+            
+            if (p.startOffset != 0) {
+                start = p.startOffset;
+            }
+            
+            if (p.endOffset != 0) {
+                end = p.endOffset;
+                if (nodes->nodeNr < p.endOffset) {
+                    end =nodes->nodeNr;
+                    NSLog(@"EndOffset too large setting to actual result number to avoid array overflow");
+                }
+            }
+            
+            
+            
+            // result loop
+            for (NSInteger i = start; i < end; i++)
             {
                 
                 xmlNodePtr currentNode = nodes->nodeTab[i];
@@ -340,9 +427,6 @@
                 
                 printCurrentNode(doc, currentNode);
                 
-                
-                
-
                // xmlXPathContextPtr xpContext = xmlXPathNewContext(currentNode->doc);
                 // save node
                 xmlNodePtr save = xpathCtx->node;
@@ -373,19 +457,26 @@
     xmlXPathFreeContext(xpathCtx);
     xmlFreeDoc(doc);
     }
+    
+    if ([klass isEqualToString:@"Test"]) {
+        return (NSObject*)testArray;
+    }
+
     return object;
     
     
 }
 
+// needed for debugging
 void printCurrentNode(xmlDocPtr doc, xmlNodePtr node){
     xmlBufferPtr nodeBuffer = xmlBufferCreate();
     xmlNodeDump(nodeBuffer, doc, node, 0, 1);
     // ... Do something with nodeBuffer->content
+    NSString *currentNodeContent = nil;
     
     if (nodeBuffer->content )
     {
-        NSString *currentNodeContent =
+        currentNodeContent =
         [NSString stringWithCString:(const char *)nodeBuffer->content encoding:NSUTF8StringEncoding];
         NSLog(@"Node Content ***** %@",currentNodeContent);
         
@@ -394,62 +485,28 @@ void printCurrentNode(xmlDocPtr doc, xmlNodePtr node){
     xmlBufferFree(nodeBuffer);
 }
 
-// move to Parsing Rule
-+ (NSMutableArray*) createParsingField:(NSArray*)fields{
-    /// recursive part start
-    NSMutableArray *myFields = [[NSMutableArray alloc]init];
-    for (NSDictionary *field in fields) {
-        // ---> 2.5 start another loop array for type array field
-        //NSArray *field = [field objectForKey:@"fields"];
-        //for (NSDictionary *field in fields) {
-        //NSLog(@"add field %@",field);
-        if ([[field objectForKey:@"nodeName"]isEqualToString:@"field"]) {
-            if(log) NSLog(@"field content %@",[field objectForKey:@"nodeContent"]);
-            ParsingField *pf = [[ParsingField alloc]init];
-            [pf setAttributesForObject:[field objectForKey:@"nodeAttributeArray"] classPropsFor:[ParsingField class] obj:pf];
-            pf.xpath =[field objectForKey:@"nodeContent"];
-            [myFields addObject:pf];
-            
-        }else if([[field objectForKey:@"nodeName"]isEqualToString:@"arrayfield"]) {
-            ParsingFieldArray *pfa = [[ParsingFieldArray alloc]init];
-           // pfa.fieldArray = [NSMutableArray array];
-            [pfa setAttributesForObject:[field objectForKey:@"nodeAttributeArray"] classPropsFor:[ParsingFieldArray class] obj:pfa];
-            
-            NSArray *arrayFields = [field objectForKey:@"nodeChildArray"];
-            for (NSDictionary *arrayFieldChild in arrayFields) {
-                
-                
-                if ([[arrayFieldChild objectForKey:@"nodeName"]isEqualToString:@"xpath"]) {
-                   if(log) NSLog(@"xpath content %@",[arrayFieldChild objectForKey:@"nodeContent"]);
-                    pfa.xpath =[arrayFieldChild objectForKey:@"nodeContent"];
-                }else if([[arrayFieldChild objectForKey:@"nodeName"]isEqualToString:@"arrayobject"]) {
-                    // ------> recursive field call
-                    NSLog(@"%@",[arrayFieldChild objectForKey:@"nodeChildArray"]);
-                    
-                    pfa.fieldArray = [ParsingObject createParsingField:[arrayFieldChild objectForKey:@"nodeChildArray"]];
-                }else{
-                    // error
-                }
-                
-            }
-            [myFields addObject:pfa];
-            
-            
-        }else{
-            // error
-        }
-        //}
+NSString* getCurrentNodeBuffer(xmlDocPtr doc, xmlNodePtr node){
+    xmlBufferPtr nodeBuffer = xmlBufferCreate();
+    xmlNodeDump(nodeBuffer, doc, node, 0, 1);
+    // ... Do something with nodeBuffer->content
+    NSString *currentNodeContent = nil;
+    
+    if (nodeBuffer->content )
+    {
+        currentNodeContent =
+        [NSString stringWithCString:(const char *)nodeBuffer->content encoding:NSUTF8StringEncoding];
+        NSLog(@"Node Content ***** %@",currentNodeContent);
         
         
     }
-    // recursive part end
-    return myFields;
-    
+    xmlBufferFree(nodeBuffer);
+    return currentNodeContent;
 }
 
 
-#pragma mark - accessors
 
+#pragma mark - accessors
+// needed for javascript load
 - (void)setWebview:(UIWebView *)webview {
     @synchronized(self) {
         _webview = webview;
