@@ -18,7 +18,7 @@
     for (NSDictionary *objectp in ar) {
         //dynamically
         for (NSString * key in listVarType) {
-                   //     NSLog(@"---- %@",listVarType );
+                   //     DLog(@"---- %@",listVarType );
             if ([[objectp objectForKey:@"attributeName"]isEqualToString:key]) { //matching key
                 if ([[listVarType objectForKey:key]isEqualToString:@"NSString"]) {
                     [object setValue:[objectp objectForKey:@"nodeContent"] forKey:key ];
@@ -45,7 +45,7 @@
    // for (NSDictionary *objectp in ar) {
         //dynamically
         for (NSString * key in listVarType) {
-            //     NSLog(@"---- %@",listVarType );
+            //     DLog(@"---- %@",listVarType );
             if ([fieldName isEqualToString:key]) { //matching key
                 if ([[listVarType objectForKey:key]isEqualToString:@"NSString"]) {
                     [object setValue:[value objectForKey:@"nodeContent"] forKey:key ];
@@ -71,7 +71,7 @@
     // for (NSDictionary *objectp in ar) {
     //dynamically
     for (NSString * key in listVarType) {
-        //     NSLog(@"---- %@",listVarType );
+        //     DLog(@"---- %@",listVarType );
         if ([fieldName isEqualToString:key]) { //matching key
             if ([[listVarType objectForKey:key]isEqualToString:@"NSString"]) {
                 [object setValue:value forKey:key ];

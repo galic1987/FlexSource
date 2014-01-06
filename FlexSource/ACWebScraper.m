@@ -85,7 +85,7 @@ NSInteger const kACWebScraperWhenCountMax = 10;
 }
 
 - (void)evaluate:(NSString*)evaluation {
-    NSLog(@"WebScraper: evaluate");
+    DLog(@"WebScraper: evaluate");
     
     NSString *result = [self stringByEvaluatingJavaScriptFromString:[evaluation wrapInFunction]];
     if ([self.delegate respondsToSelector:@selector(webScraper:didEvaluate:withResult:)]) {
@@ -112,21 +112,21 @@ NSInteger const kACWebScraperWhenCountMax = 10;
             [self evaluate:evaluation];
         } else {
             if (self.currentWhenCount < self.whenCount) {
-                NSLog(@"WebScraper: waiting to evaluate...");
+                DLog(@"WebScraper: waiting to evaluate...");
                 self.currentWhenCount++;
                 
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^(void){
                     [self evaluateWhen:e];
                 });
             } else {
-                NSLog(@"WebScraper: waited for too long, stopped. ");
+                DLog(@"WebScraper: waited for too long, stopped. ");
                 if ([self.delegate respondsToSelector:@selector(webScraper:didNotEvaluate:when:)]) {
                     [self.delegate webScraper:self didNotEvaluate:evaluation when:when];
                 }
             }
         }
     } else if ([when isKindOfClass:[NSNumber class]]) {
-        NSLog(@"WebScraper: waiting %@ seconds to evaluate...", when);
+        DLog(@"WebScraper: waiting %@ seconds to evaluate...", when);
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, ([when floatValue] * NSEC_PER_SEC)), dispatch_get_main_queue(), ^(void){
             [self evaluate:evaluation];
         });

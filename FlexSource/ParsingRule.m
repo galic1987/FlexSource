@@ -10,7 +10,7 @@
 
 @implementation ParsingRule
 
-@synthesize url,dateDownloaded,md5Hash,parsingError,parsingStatus,type,ruleRaw,v;
+@synthesize url,dateDownloaded,md5Hash,parsingError,parsingStatus,type,ruleRaw,v,log;
 
 
 
@@ -33,12 +33,81 @@
     
 }
 
+void handleValidationError(void *ctx, const char *format, ...) {
+    char *errMsg;
+    va_list args;
+    va_start(args, format);
+    vasprintf(&errMsg, format, args);
+    va_end(args);
+    fprintf(stderr, "Validation Error: %s", errMsg);
+    free(errMsg);
+}
+
++(BOOL)validateRule:(NSData*)ruleData withSchema:(NSData*)schemaData{
+    
+    int result = 42;
+    xmlSchemaParserCtxtPtr parserCtxt = NULL;
+    xmlSchemaPtr schema = NULL;
+    xmlSchemaValidCtxtPtr validCtxt = NULL;
+    
+    //xmlDocPtr xmlDocumentPointer = xmlParseMemory(xmlSource, xmlLength);
+    
+    xmlDocPtr xmlDocumentPointer = xmlReadMemory([ruleData bytes], [ruleData length], "", NULL, XML_PARSE_RECOVER);
+    
+    
+    //parserCtxt = xmlSchemaNewMemParserCtxt([schemaData bytes],[schemaData length]);
+    parserCtxt = xmlSchemaNewParserCtxt([schemaData bytes]);
+    
+    if (parserCtxt == NULL) {
+        fprintf(stderr, "Could not create XSD schema parsing context.\n");
+        goto leave;
+    }
+    
+    schema = xmlSchemaParse(parserCtxt);
+    
+    if (schema == NULL) {
+        fprintf(stderr, "Could not parse XSD schema.\n");
+        goto leave;
+    }
+    
+    validCtxt = xmlSchemaNewValidCtxt(schema);
+    
+    if (!validCtxt) {
+        fprintf(stderr, "Could not create XSD schema validation context.\n");
+        goto leave;
+    }
+    
+    xmlSetStructuredErrorFunc(NULL, NULL);
+    xmlSetGenericErrorFunc(NULL, handleValidationError);
+    xmlThrDefSetStructuredErrorFunc(NULL, NULL);
+    xmlThrDefSetGenericErrorFunc(NULL, handleValidationError);
+    
+    result = xmlSchemaValidateDoc(validCtxt, xmlDocumentPointer);
+    
+leave:
+    
+    if (parserCtxt) {
+        xmlSchemaFreeParserCtxt(parserCtxt);
+    }
+    
+    if (schema) {
+        xmlSchemaFree(schema);
+    }
+    
+    if (validCtxt) {
+        xmlSchemaFreeValidCtxt(validCtxt);
+    }
+    printf("\n");
+    printf("Validation successful: %s (result: %d)\n", (result == 0) ? "YES" : "NO", result);
+    
+    return 0;
+}
 
 
 
 +(NSMutableArray*)parseRule:(NSData*)content{
     
-    //NSLog(@"Content: %@", content);
+   // DLog(@"Content: %@", content);
     
     
     // Summary
@@ -57,10 +126,11 @@
         // return system does not have this parser version
     }
     
+    
     NSMutableArray *pool = [[NSMutableArray alloc]init];
     
     // 2. each object in loop xpath query -- sort by priority
-    NSArray *objects = PerformXMLXPathQuery(content, @"//objects/object");
+    NSArray *objects = PerformXMLXPathQuery(content, @"//ns:objects/ns:object");
     for (NSDictionary *object in objects) {
         // ---> 2.1 start another loop sources for each object -- sort by priority
         ParsingObject * parsingObject = [[ParsingObject alloc]init];
@@ -69,7 +139,7 @@
         //[parsingObject setAttributesForObject:[object objectForKey:@"nodeAttributeArray"]];
         [parsingObject setAttributesForObject:[object objectForKey:@"nodeAttributeArray"] classPropsFor:[ParsingObject class] obj:parsingObject];
         
-        //NSLog(@"OOO %@",parsingObject.name);
+        //DLog(@"OOO %@",parsingObject.name);
         
         NSArray *sources = [object objectForKey:@"nodeChildArray"];
         for (NSDictionary *source in sources) {
@@ -77,7 +147,7 @@
             parsingSource.urls = [NSMutableArray array];
             [parsingSource setAttributesForObject:[source objectForKey:@"nodeAttributeArray"] classPropsFor:[ParsingSource class] obj:parsingSource];
             
-            //NSLog(@"111 %@",source);
+            //DLog(@"111 %@",source);
             // ---> 2.2 start another loop urls for each soruce -- sort by steps
             NSArray *urls = [source objectForKey:@"nodeChildArray"];
             
@@ -87,7 +157,7 @@
                 
                 
                 
-                //NSLog(@"222 %@",url);
+                //DLog(@"222 %@",url);
                 NSArray *urlChilds = [url objectForKey:@"nodeChildArray"];
                 // ---> 2.3 start another loop fields for each object
                 for (NSDictionary *urlChild in urlChilds) {
@@ -99,8 +169,8 @@
                         
                         for (NSDictionary *header in headers) {
                             //ParsingHeader * parsingHeader = [[ParsingHeader alloc]init];
-                            // NSLog(@"header key %@",[[[header objectForKey:@"nodeAttributeArray"] objectAtIndex:0]objectForKey:@"nodeContent"]);
-                            //NSLog(@"header content %@",[header objectForKey:@"nodeContent"]);
+                            // DLog(@"header key %@",[[[header objectForKey:@"nodeAttributeArray"] objectAtIndex:0]objectForKey:@"nodeContent"]);
+                            //DLog(@"header content %@",[header objectForKey:@"nodeContent"]);
                             [parsingHeaders setObject:[header objectForKey:@"nodeContent"] forKey:[[[header objectForKey:@"nodeAttributeArray"] objectAtIndex:0]objectForKey:@"nodeContent"]];
                         }
                         parsingUrl.headers = parsingHeaders;
@@ -111,7 +181,7 @@
                         NSArray *fields = [urlChild objectForKey:@"nodeChildArray"];
                         parsingUrl.fields = [ParsingRule
                                              createParsingField:fields];
-                        // NSLog(@"field %@",urlChild);
+                        // DLog(@"field %@",urlChild);
                         
                         
                     }else{
@@ -131,7 +201,7 @@
     }
     
     
-    if (log) NSLog(@"Objects in pool %@ ",pool);
+    //if (log) DLog(@"Objects in pool %@ ",pool);
     
     
     // 3. preparation work (part of parser)
@@ -165,9 +235,9 @@
         // ---> 2.5 start another loop array for type array field
         //NSArray *field = [field objectForKey:@"fields"];
         //for (NSDictionary *field in fields) {
-        //NSLog(@"add field %@",field);
+        //DLog(@"add field %@",field);
         if ([[field objectForKey:@"nodeName"]isEqualToString:@"field"]) {
-            if(log) NSLog(@"field content %@",[field objectForKey:@"nodeContent"]);
+            //if(log) DLog(@"field content %@",[field objectForKey:@"nodeContent"]);
             ParsingField *pf = [[ParsingField alloc]init];
             [pf setAttributesForObject:[field objectForKey:@"nodeAttributeArray"] classPropsFor:[ParsingField class] obj:pf];
             pf.xpath =[field objectForKey:@"nodeContent"];
@@ -183,11 +253,11 @@
                 
                 
                 if ([[arrayFieldChild objectForKey:@"nodeName"]isEqualToString:@"xpath"]) {
-                    if(log) NSLog(@"xpath content %@",[arrayFieldChild objectForKey:@"nodeContent"]);
+                    //if(log) DLog(@"xpath content %@",[arrayFieldChild objectForKey:@"nodeContent"]);
                     pfa.xpath =[arrayFieldChild objectForKey:@"nodeContent"];
                 }else if([[arrayFieldChild objectForKey:@"nodeName"]isEqualToString:@"arrayobject"]) {
                     // ------> recursive field call
-                    NSLog(@"%@",[arrayFieldChild objectForKey:@"nodeChildArray"]);
+                    //DLog(@"%@",[arrayFieldChild objectForKey:@"nodeChildArray"]);
                     
                     pfa.fieldArray = [ParsingRule createParsingField:[arrayFieldChild objectForKey:@"nodeChildArray"]];
                 }else{

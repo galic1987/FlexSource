@@ -47,6 +47,7 @@
 // settings
 @property BOOL log;
 
+
 // delegate // finished or error
 @property (assign) id <FlexSourceResponderDelegate> delegate;
 
@@ -58,7 +59,8 @@
 
 // data
 
-
+// loadview locking
+@property NSLock * syncLock;
 
 
 

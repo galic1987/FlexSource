@@ -24,8 +24,11 @@ static NSString * frameworkVersion = @"1";
     /// Default URL Rule settings
     [self set:@"http://galic-design.com/flexSourceTests/rule1.xml" forKey:@"baseRuleURL"];
 
+    [self set:@"http://galic-design.com/flexSourceTests/schema.xml" forKey:@"schemaURL"];
+
+    [self set:@"http://galic-design.com" forKey:@"ns"];
     
-    [self set:@"1" forKey:@"numberOfThreads"];
+    [self set:@"5" forKey:@"numberOfThreads"];
 
     [self set:frameworkVersion forKey:@"frameworkVersion"];
 
@@ -55,7 +58,7 @@ static NSString * frameworkVersion = @"1";
 + (NSString *)get:(NSString*)settings{
     NSString * sett = [prefs stringForKey:settings];
     if (sett == nil) {
-        NSLog(@"Settings for %@ key are null warning", settings);
+        DLog(@"Settings for %@ key are null warning", settings);
     }
     return sett;
 }

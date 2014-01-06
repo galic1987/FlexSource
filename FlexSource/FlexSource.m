@@ -55,7 +55,7 @@
         //****** load rule from sandbox
         
         
-        if ([ruleUrls count]==0) {
+        if ([ruleUrlss count]==0) {
             [ruleUrls addObject:[SettingsHelper get:@"baseRuleURL"]];
         }
         
@@ -79,9 +79,11 @@
         // 1.1 download file --> blocking need to fix
         NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:u ];
         if (log) {
-            NSLog(@"Starting with url rule %@",u.absoluteString);
+            DLog(@"Starting with url rule %@",u.absoluteString);
         }
         NSURLResponse * response = nil;
+        //[request setCachePolicy:NSURLCacheStorageNotAllowed];
+        
         NSError * error = nil;
         NSData * data = [NSURLConnection sendSynchronousRequest:request
                                               returningResponse:&response
@@ -91,6 +93,11 @@
         
         if (error == nil)
         {
+            //NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
+           // DLog(@"%i", [httpResponse statusCode]);
+            
+          //  NSString* newStr = [NSString stringWithUTF8String:[data bytes]];
+          //  DLog(@"%@",newStr);
             
             
             // 1.2 look for parse version
@@ -104,23 +111,30 @@
             // if actual just continue to next
             
             
+            // ******* VALIDATION
+            NSString* str = [SettingsHelper get:@"schemaURL"];
+            NSData* schema = [str dataUsingEncoding:NSUTF8StringEncoding];
+            [ParsingRule validateRule:data withSchema:schema];
+            
             // ******* MAKE TRY
             NSMutableArray *ar = [ParsingRule parseRule:data];
             
+            
             if (ar == nil || [ar count] == 0 ) {
                 // ***** PARSER FAIL
-                [self failedParsing:currentRule.url.path];
+                [self failedParsing:u.absoluteString];
             }else{
                 // Parser OK
 
                 ParsingRule *r = [[ParsingRule alloc]init];
+                r.log = self.log;
                 r.dateDownloaded = [NSDate date];
                 r.url = u;
                 r.v = [ParsingRule getVersion:data];
                 
                 objectPool = ar; //put objects in objectpool
                 currentRule = r; // put new rule
-                NSLog(@"Using rule with url %@",u.absoluteString);
+                DLog(@"Using rule with url %@",u.absoluteString);
 
                 
                 // ***** trigger save rule to sandbox
@@ -130,9 +144,9 @@
             
             // ** UNKNOWN FAIL
         }else{
-           if(log) NSLog(@"%@",[error localizedDescription]);
+           if(log) DLog(@"%@",[error localizedDescription]);
             // **************** MISSING ERROR HANDLING
-            [self failedParsing:currentRule.url.path];
+            [self failedParsing:u.absoluteString];
 
         }
         
@@ -155,18 +169,17 @@
     //***** ADD Delegate notifier
     for (ParsingObject *o in objectPool) {
         o.delegate = self;
+        o.log = self.log;
+
     }
     
     
     for (ParsingObject *obj in objectPool) {
-        
-        
 //        if ([obj.type isEqualToString:@"NSIvoObject2"]) {
 //            [obj main];
 //        }
-       if (log) NSLog(@"Adding object to queue %@",obj.name);
+       if (log) DLog(@"Adding object to queue %@",obj.name);
         [queue addOperation:obj];
-        
     }
 
 }
@@ -179,7 +192,7 @@
     [resultPool setObject:object forKey:resourceID];
     
     if (log) {
-        NSLog(@"FX ok %@%@%@%@",resourceID,object,status,message);
+        DLog(@"FX ok %@%@%@%@",resourceID,object,status,message);
     }
     [delegate finishedObjectWithId:resourceID theObject:object withStatus:status withMessage:message];
     
@@ -188,7 +201,7 @@
 -(void)errorOnObjectWithId:(NSString*)resourceID theObject:(NSObject*)object withStatus:(NSString*)status withMessage:(NSString*)message{
     
     if (log) {
-        NSLog(@"FX error %@%@%@%@",resourceID,object,status,message);
+        DLog(@"FX error %@%@%@%@",resourceID,object,status,message);
     }
     [delegate errorOnObjectWithId:resourceID theObject:object withStatus:status withMessage:message];
     
@@ -197,7 +210,7 @@
 -(void)failedParsing:(NSString*)description{
     
     if (log) {
-        NSLog(@"Parsing fail %@",description);
+        DLog(@"Parsing fail %@",description);
     }
     
     [delegate failedParsing:description];
@@ -208,7 +221,7 @@
     for (ParsingTest *object in objects) {
 
         if (log) {
-        NSLog(@"Test log \n Result:%@ \n Xpath:%@ \n Expected value:%@ \n Current value: %@ \n NodeBuffer: %@",object.result, object.xpath,object.expectedValue,object.currentValue,object.xpathParsingBuffer);
+        DLog(@"Test log \n Result:%@ \n Xpath:%@ \n Expected value:%@ \n Current value: %@ \n NodeBuffer: %@",object.result, object.xpath,object.expectedValue,object.currentValue,object.xpathParsingBuffer);
         }
     }
     [delegate testResultOnObject:objects result:result msg:msg];

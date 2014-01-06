@@ -42,7 +42,7 @@
 +(BOOL)checkNewFileVersion:(double)version parseRule:(NSData*)content;
 +(double)getVersion:(NSData*)content;
 + (NSMutableArray*) createParsingField:(NSArray*)fields;
-
++(BOOL)validateRule:(NSData*)ruleData withSchema:(NSData*)schemaData;
 
 
 @end

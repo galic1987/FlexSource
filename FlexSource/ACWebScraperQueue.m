@@ -58,7 +58,7 @@
 
 - (void)dequeue {
     if (![self.evaluationsQueue count]) return;
-    NSLog(@"WebScraperQueue: dequeue");
+    DLog(@"WebScraperQueue: dequeue");
     
     NSString *evaluation = nil;
     NSString *when = nil;
@@ -87,7 +87,7 @@
 
 - (void)webScraper:(ACWebScraper*)webScraper didEvaluate:(NSString*)evaluation withResult:(NSString*)result {
     if (![self.evaluationsQueue count]) {
-        NSLog(@"WebScraperQueue: finished evaluating");
+        DLog(@"WebScraperQueue: finished evaluating");
         if ([self.delegate respondsToSelector:@selector(webScraperQueue:didEvaluateQueueWithResult:)]) {
             [self.delegate webScraperQueue:self didEvaluateQueueWithResult:result];
         }
@@ -103,7 +103,7 @@
     }
     
     if (self.stopIfWhenFails) {
-        NSLog(@"WebScraperQueue: stopped on when failure");
+        DLog(@"WebScraperQueue: stopped on when failure");
         return;
     }
     

@@ -118,7 +118,8 @@ NSDictionary *DictionaryForNode(xmlNodePtr currentNode, NSMutableDictionary *par
 	return resultForNode;
 }
 
-NSArray *PerformXPathQuery(xmlDocPtr doc, NSString *query)
+
+NSArray* PerformXPathQuery(xmlDocPtr doc, NSString *query)
 {
     xmlXPathContextPtr xpathCtx; 
     xmlXPathObjectPtr xpathObj; 
@@ -129,27 +130,30 @@ NSArray *PerformXPathQuery(xmlDocPtr doc, NSString *query)
     
     if(xpathCtx == NULL)
 	{
-		NSLog(@"Unable to create XPath context.");
+		DLog(@"Unable to create XPath context.");
 		return nil;
     }
+    
+    // default namespace
+    xmlXPathRegisterNs(xpathCtx, BAD_CAST "ns", BAD_CAST "http://galic-design.com");
     
     /* Evaluate xpath expression */
     xpathObj = xmlXPathEvalExpression((xmlChar *)[query cStringUsingEncoding:NSUTF8StringEncoding], xpathCtx);
     if(xpathObj == NULL) {
-		NSLog(@"Unable to evaluate XPath.");
+		DLog(@"Unable to evaluate XPath.");
 		return nil;
     }
     
 //    xmlChar *c1 = (xmlChar *)xpathObj->stringval;
 //                   
 //    if (c1) {
-//        NSLog(@"******%@",[NSString stringWithCString:(char * const)c1 encoding:NSUTF8StringEncoding]);
+//        DLog(@"******%@",[NSString stringWithCString:(char * const)c1 encoding:NSUTF8StringEncoding]);
 //    }
     
 	xmlNodeSetPtr nodes = xpathObj->nodesetval;
 	if (!nodes)
 	{
-		NSLog(@"Nodes was nil.");
+		DLog(@"Nodes was nil.");
 		return nil;
 	}
 	
@@ -189,7 +193,7 @@ NSArray *PerformHTMLXPathQuery(NSData *document, NSString *query)
 	
     if (doc == NULL)
 	{
-		NSLog(@"Unable to parse.");
+		DLog(@"Unable to parse.");
 		return nil;
     }
 	
@@ -208,10 +212,11 @@ NSArray *PerformXMLXPathQuery(NSData *document, NSString *query)
 	
     if (doc == NULL)
 	{
-		NSLog(@"Unable to parse.");
+		DLog(@"Unable to parse.");
 		return nil;
     }
-	
+    //xmlMemoryDump();
+
 	NSArray *result = PerformXPathQuery(doc, query);
     xmlFreeDoc(doc); 
 	

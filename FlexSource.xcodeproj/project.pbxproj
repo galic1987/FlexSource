@@ -38,6 +38,8 @@
 		4B6AC5331876F45E0003D02B /* ParsingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B6AC5311876F45E0003D02B /* ParsingTest.m */; };
 		4B7450C51852086E00CE39F5 /* SettingsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7450C41852086E00CE39F5 /* SettingsHelper.m */; };
 		4B7450C61852086E00CE39F5 /* SettingsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7450C41852086E00CE39F5 /* SettingsHelper.m */; };
+		4B7C4B9818779B5D00911117 /* FSTestingHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA4F0811862229100C33D53 /* FSTestingHelperTests.m */; };
+		4B7C4B9918779BB100911117 /* libFlexSource.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B318D0B17E52D7C006D359C /* libFlexSource.a */; };
 		4B96544018424D8D00715A23 /* NSObject+FSClassHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B96543F18424D8D00715A23 /* NSObject+FSClassHelper.m */; };
 		4B96544118424D8D00715A23 /* NSObject+FSClassHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B96543F18424D8D00715A23 /* NSObject+FSClassHelper.m */; };
 		4B9654451843BEE400715A23 /* NSIvoObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9654441843BEE400715A23 /* NSIvoObject.m */; };
@@ -140,9 +142,9 @@
 		4B29AE8A1841324C005C6FB9 /* ParsingFieldArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParsingFieldArray.m; sourceTree = "<group>"; };
 		4B318D0B17E52D7C006D359C /* libFlexSource.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFlexSource.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B318D0E17E52D7C006D359C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		4B318D1217E52D7C006D359C /* FlexSource-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FlexSource-Prefix.pch"; sourceTree = "<group>"; };
+		4B318D1217E52D7C006D359C /* FlexSource-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "FlexSource-Prefix.pch"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4B318D1317E52D7C006D359C /* FlexSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlexSource.h; sourceTree = "<group>"; };
-		4B318D1517E52D7C006D359C /* FlexSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlexSource.m; sourceTree = "<group>"; };
+		4B318D1517E52D7C006D359C /* FlexSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = FlexSource.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4B318D1C17E52D7D006D359C /* FlexSourceTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlexSourceTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B318D1D17E52D7D006D359C /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		4B318D1F17E52D7D006D359C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -151,9 +153,9 @@
 		4B318D2B17E52D7D006D359C /* FlexSourceTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlexSourceTests.h; sourceTree = "<group>"; };
 		4B318D2C17E52D7D006D359C /* FlexSourceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlexSourceTests.m; sourceTree = "<group>"; };
 		4B318D3717E52EB4006D359C /* ParsingRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParsingRule.h; sourceTree = "<group>"; };
-		4B318D3817E52EB4006D359C /* ParsingRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParsingRule.m; sourceTree = "<group>"; };
+		4B318D3817E52EB4006D359C /* ParsingRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ParsingRule.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4B318D3B17E7ACA0006D359C /* ParsingObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParsingObject.h; sourceTree = "<group>"; };
-		4B318D3C17E7ACA0006D359C /* ParsingObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParsingObject.m; sourceTree = "<group>"; };
+		4B318D3C17E7ACA0006D359C /* ParsingObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ParsingObject.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4B318D4017EA5A4A006D359C /* JobObjectPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobObjectPool.h; sourceTree = "<group>"; };
 		4B318D4117EA5A4A006D359C /* JobObjectPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobObjectPool.m; sourceTree = "<group>"; };
 		4B56D7CB185B6F0900A73C32 /* FlexSourceResponderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlexSourceResponderDelegate.h; sourceTree = "<group>"; };
@@ -168,7 +170,7 @@
 		4B7450C31852086E00CE39F5 /* SettingsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsHelper.h; sourceTree = "<group>"; };
 		4B7450C41852086E00CE39F5 /* SettingsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsHelper.m; sourceTree = "<group>"; };
 		4B96543E18424D8D00715A23 /* NSObject+FSClassHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+FSClassHelper.h"; sourceTree = "<group>"; };
-		4B96543F18424D8D00715A23 /* NSObject+FSClassHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+FSClassHelper.m"; sourceTree = "<group>"; };
+		4B96543F18424D8D00715A23 /* NSObject+FSClassHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "NSObject+FSClassHelper.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4B9654431843BEE400715A23 /* NSIvoObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSIvoObject.h; sourceTree = "<group>"; };
 		4B9654441843BEE400715A23 /* NSIvoObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSIvoObject.m; sourceTree = "<group>"; };
 		4BA4F01C1860CC4A00C33D53 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -208,9 +210,9 @@
 		4BE7D3F717EF3EB0003445F3 /* ACWebScrapingActivityIndicatorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACWebScrapingActivityIndicatorManager.h; sourceTree = "<group>"; };
 		4BE7D3F817EF3EB0003445F3 /* ACWebScrapingActivityIndicatorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACWebScrapingActivityIndicatorManager.m; sourceTree = "<group>"; };
 		4BE7D3F917EF3EB0003445F3 /* ACWebScraperQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACWebScraperQueue.h; sourceTree = "<group>"; };
-		4BE7D3FA17EF3EB1003445F3 /* ACWebScraperQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACWebScraperQueue.m; sourceTree = "<group>"; };
+		4BE7D3FA17EF3EB1003445F3 /* ACWebScraperQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ACWebScraperQueue.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4BE7D3FB17EF3EB1003445F3 /* ACWebScraper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACWebScraper.h; sourceTree = "<group>"; };
-		4BE7D3FC17EF3EB1003445F3 /* ACWebScraper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACWebScraper.m; sourceTree = "<group>"; };
+		4BE7D3FC17EF3EB1003445F3 /* ACWebScraper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ACWebScraper.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4BE7D3FD17EF3EB1003445F3 /* NSString+Javascript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Javascript.h"; sourceTree = "<group>"; };
 		4BE7D3FE17EF3EB1003445F3 /* NSString+Javascript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Javascript.m"; sourceTree = "<group>"; };
 		4BE7D3FF17EF3EB2003445F3 /* UIWebView+Document.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+Document.h"; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B7C4B9918779BB100911117 /* libFlexSource.a in Frameworks */,
 				4BA4F08F1862245800C33D53 /* libxml2.dylib in Frameworks */,
 				4BA4F0761862229000C33D53 /* XCTest.framework in Frameworks */,
 				4BA4F0781862229000C33D53 /* UIKit.framework in Frameworks */,
@@ -733,6 +736,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B7C4B9818779B5D00911117 /* FSTestingHelperTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

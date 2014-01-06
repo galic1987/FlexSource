@@ -25,6 +25,13 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 
+#ifdef DEBUG
+#   define DLog(fmt, ...) DLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+#else
+#   define DLog(...)
+#endif
+
+
 @interface FSTestingHelperTests : XCTestCase <FlexSourceResponderDelegate>
 
 
@@ -55,15 +62,19 @@
     //UIWebView *ui = [[UIWebView alloc]init];
    // STAssertNotNil(app, @"UIApplication failed to find the AppDelegate");
     
+    NSMutableArray * urls = [NSMutableArray array];
+   // [urls addObject:@"http://galic-design.com/flexSourceTests/rule1.xml"]; // non existing
+   // [urls addObject:@"http://galic-design.com/flexSourceTests/rule3.xml"]; // broken
+    [urls addObject:@"http://galic-design.com/flexSourceTests/rule2.xml"]; // right
+
     
-    
-    FlexSource *fx = [[FlexSource alloc]initWithRuleUrl:nil];
-    fx.log = YES;
+    FlexSource *fx = [[FlexSource alloc]initWithRuleUrls:urls];
+    fx.log = NO;
     [fx updateRules];
     
     
     
-    NSDate *fiveSecondsFromNow = [NSDate dateWithTimeIntervalSinceNow:15.0];
+    NSDate *fiveSecondsFromNow = [NSDate dateWithTimeIntervalSinceNow:65.0];
     
     fx.delegate = self;
     // delegate method include
@@ -89,18 +100,23 @@
 
 -(void)errorOnObjectWithId:(NSString*)resourceID theObject:(NSObject*)object withStatus:(NSString*)status withMessage:(NSString*)message{
     
-    NSLog(@"TS %@%@%@%@",resourceID,object,status,message);
+    NSLog(@"**** %@%@%@%@",resourceID,object,status,message);
     
 }
 
 
 -(void)failedParsing:(NSString*)description{
-    
+    NSLog(@"!!!! Parsing fail %@",description);
+
 }
 
 // test delegates
 -(void)testResultOnObject:(NSMutableArray *)objects result:(BOOL)result msg:(NSString*)msg{
-    
+    for (ParsingTest *object in objects) {
+        
+            NSLog(@"//// Test log \n Result:%@ \n Xpath:%@ \n Expected value:%@ \n Current value: %@ \n NodeBuffer: %@",object.result, object.xpath,object.expectedValue,object.currentValue,object.xpathParsingBuffer);
+    }
+
 }
 
 
