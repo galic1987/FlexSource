@@ -29,6 +29,8 @@ static NSString * frameworkVersion = @"1";
     [self set:@"http://galic-design.com" forKey:@"ns"];
     
     [self set:@"5" forKey:@"numberOfThreads"];
+    
+    [self set:@"5" forKey:@"timeOutJavaScriptCompilationTotal"];
 
     [self set:frameworkVersion forKey:@"frameworkVersion"];
 

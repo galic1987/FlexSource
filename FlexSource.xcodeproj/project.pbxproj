@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B13214C187B856500DCAF73 /* ruleSchema.xsd in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4B22150418097CA500C87A67 /* ruleSchema.xsd */; };
+		4B13214D187B85B700DCAF73 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BE7D3D017EB507B003445F3 /* libxml2.dylib */; };
+		4B13214E187B85C100DCAF73 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BE7D3D017EB507B003445F3 /* libxml2.dylib */; };
+		4B13214F187B85CC00DCAF73 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BE7D3D017EB507B003445F3 /* libxml2.dylib */; };
+		4B132150187B866700DCAF73 /* ruleSchema.xsd in Resources */ = {isa = PBXBuildFile; fileRef = 4B22150418097CA500C87A67 /* ruleSchema.xsd */; };
 		4B22150518097CA500C87A67 /* ruleSchema.xsd in Resources */ = {isa = PBXBuildFile; fileRef = 4B22150418097CA500C87A67 /* ruleSchema.xsd */; };
 		4B29AE8318412E8F005C6FB9 /* ParsingSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B29AE8218412E8F005C6FB9 /* ParsingSource.m */; };
 		4B29AE8418412E8F005C6FB9 /* ParsingSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B29AE8218412E8F005C6FB9 /* ParsingSource.m */; };
@@ -56,9 +61,6 @@
 		4BA4F0781862229000C33D53 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BA4F01C1860CC4A00C33D53 /* UIKit.framework */; };
 		4BA4F0801862229100C33D53 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4BA4F07E1862229100C33D53 /* InfoPlist.strings */; };
 		4BA4F08D1862244000C33D53 /* libFlexSource.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B318D0B17E52D7C006D359C /* libFlexSource.a */; };
-		4BA4F08F1862245800C33D53 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BE7D3D017EB507B003445F3 /* libxml2.dylib */; };
-		4BE7D3D117EB507B003445F3 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BE7D3D017EB507B003445F3 /* libxml2.dylib */; };
-		4BE7D3D217EB5086003445F3 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BE7D3D017EB507B003445F3 /* libxml2.dylib */; };
 		4BE7D3D817EB519F003445F3 /* HTMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7D3D517EB519F003445F3 /* HTMLNode.m */; };
 		4BE7D3D917EB519F003445F3 /* HTMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7D3D517EB519F003445F3 /* HTMLNode.m */; };
 		4BE7D3DA17EB519F003445F3 /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7D3D717EB519F003445F3 /* HTMLParser.m */; };
@@ -127,13 +129,15 @@
 			dstPath = "include/${PRODUCT_NAME}";
 			dstSubfolderSpec = 16;
 			files = (
+				4B13214C187B856500DCAF73 /* ruleSchema.xsd in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		4B22150418097CA500C87A67 /* ruleSchema.xsd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ruleSchema.xsd; sourceTree = "<group>"; };
+		4B132148187B7F0100DCAF73 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
+		4B22150418097CA500C87A67 /* ruleSchema.xsd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ruleSchema.xsd; path = FlexSource/ruleSchema.xsd; sourceTree = SOURCE_ROOT; };
 		4B29AE8118412E8F005C6FB9 /* ParsingSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParsingSource.h; sourceTree = "<group>"; };
 		4B29AE8218412E8F005C6FB9 /* ParsingSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParsingSource.m; sourceTree = "<group>"; };
 		4B29AE8518412FD2005C6FB9 /* ParsingField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParsingField.h; sourceTree = "<group>"; };
@@ -226,7 +230,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4BE7D3D117EB507B003445F3 /* libxml2.dylib in Frameworks */,
+				4B13214D187B85B700DCAF73 /* libxml2.dylib in Frameworks */,
 				4B318D0F17E52D7C006D359C /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -235,11 +239,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B13214E187B85C100DCAF73 /* libxml2.dylib in Frameworks */,
 				4B318D1E17E52D7D006D359C /* SenTestingKit.framework in Frameworks */,
 				4B318D2017E52D7D006D359C /* UIKit.framework in Frameworks */,
 				4B318D2117E52D7D006D359C /* Foundation.framework in Frameworks */,
 				4B318D2417E52D7D006D359C /* libFlexSource.a in Frameworks */,
-				4BE7D3D217EB5086003445F3 /* libxml2.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,8 +262,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B13214F187B85CC00DCAF73 /* libxml2.dylib in Frameworks */,
 				4B7C4B9918779BB100911117 /* libFlexSource.a in Frameworks */,
-				4BA4F08F1862245800C33D53 /* libxml2.dylib in Frameworks */,
 				4BA4F0761862229000C33D53 /* XCTest.framework in Frameworks */,
 				4BA4F0781862229000C33D53 /* UIKit.framework in Frameworks */,
 				4BA4F0771862229000C33D53 /* Foundation.framework in Frameworks */,
@@ -295,6 +299,7 @@
 		4B318D0D17E52D7C006D359C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4B132148187B7F0100DCAF73 /* libxml2.2.dylib */,
 				4BA4F01C1860CC4A00C33D53 /* UIKit.framework */,
 				4BE7D3D017EB507B003445F3 /* libxml2.dylib */,
 				4B318D0E17E52D7C006D359C /* Foundation.framework */,
@@ -327,9 +332,9 @@
 		4B318D1117E52D7C006D359C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4B22150418097CA500C87A67 /* ruleSchema.xsd */,
 				4BE7D3CE17EB1F2B003445F3 /* example_rule.xml */,
 				4B318D1217E52D7C006D359C /* FlexSource-Prefix.pch */,
-				4B22150418097CA500C87A67 /* ruleSchema.xsd */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -631,6 +636,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B132150187B866700DCAF73 /* ruleSchema.xsd in Resources */,
 				4BA4F0801862229100C33D53 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

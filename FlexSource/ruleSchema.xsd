@@ -1,84 +1,96 @@
-<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://galic-design.com"
+    xmlns="http://galic-design.com"
+    elementFormDefault="qualified" >
     <xs:element name="objects">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="object">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element name="source">
-                                <xs:complexType>
-                                    <xs:sequence>
-                                        <xs:element name="url">
-                                            <xs:complexType>
-                                                <xs:sequence>
-                                                    <xs:element name="headers">
-                                                        <xs:complexType>
-                                                            <xs:sequence>
-                                                                <xs:element name="header">
-                                                                    <xs:complexType>
-                                                                        <xs:simpleContent>
-                                                                            <xs:extension base="xs:string">
-                                                                                <xs:attribute type="xs:string" name="key"/>
-                                                                            </xs:extension>
-                                                                        </xs:simpleContent>
-                                                                    </xs:complexType>
-                                                                </xs:element>
-                                                            </xs:sequence>
-                                                        </xs:complexType>
-                                                    </xs:element>
-                                                    <xs:element name="fields">
-                                                        <xs:complexType>
-                                                            <xs:sequence>
-                                                                <xs:element name="field" maxOccurs="unbounded" minOccurs="0">
-                                                                    <xs:complexType>
-                                                                        <xs:sequence>
-                                                                            <xs:element type="xs:string" name="xpath"/>
-                                                                            <xs:element name="arrayobject" minOccurs="0">
-                                                                                <xs:complexType>
-                                                                                    <xs:sequence>
-                                                                                        <xs:element name="field" maxOccurs="unbounded" minOccurs="0">
-                                                                                            <xs:complexType>
-                                                                                                <xs:sequence>
-                                                                                                    <xs:element type="xs:string" name="xpath"/>
-                                                                                                </xs:sequence>
-                                                                                                <xs:attribute type="xs:string" name="name" use="optional"/>
-                                                                                                <xs:attribute type="xs:string" name="type" use="optional"/>
-                                                                                            </xs:complexType>
-                                                                                        </xs:element>
-                                                                                    </xs:sequence>
-                                                                                    <xs:attribute type="xs:string" name="type"/>
-                                                                                    <xs:attribute type="xs:string" name="name"/>
-                                                                                    <xs:attribute type="xs:string" name="priority"/>
-                                                                                    <xs:attribute type="xs:string" name="loading"/>
-                                                                                </xs:complexType>
-                                                                            </xs:element>
-                                                                        </xs:sequence>
-                                                                        <xs:attribute type="xs:string" name="name" use="optional"/>
-                                                                        <xs:attribute type="xs:string" name="type" use="optional"/>
-                                                                    </xs:complexType>
-                                                                </xs:element>
-                                                            </xs:sequence>
-                                                        </xs:complexType>
-                                                    </xs:element>
-                                                </xs:sequence>
-                                                <xs:attribute type="xs:byte" name="step"/>
-                                                <xs:attribute type="xs:string" name="uri"/>
-                                            </xs:complexType>
-                                        </xs:element>
-                                    </xs:sequence>
-                                    <xs:attribute type="xs:byte" name="priority"/>
-                                </xs:complexType>
-                            </xs:element>
-                        </xs:sequence>
-                        <xs:attribute type="xs:string" name="type"/>
-                        <xs:attribute type="xs:string" name="name"/>
-                        <xs:attribute type="xs:string" name="priority"/>
-                        <xs:attribute type="xs:string" name="loading"/>
-                    </xs:complexType>
-                </xs:element>
+                <xs:element maxOccurs="unbounded" ref="object"/>
             </xs:sequence>
-            <xs:attribute type="xs:float" name="parserVersion"/>
-            <xs:attribute type="xs:float" name="fileVersion"/>
+            <xs:attribute name="fileVersion" use="required" type="xs:decimal"/>
+            <xs:attribute name="parserVersion" use="required" type="xs:decimal"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="object">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="source"/>
+            </xs:sequence>
+            <xs:attribute name="loading"/>
+            <xs:attribute name="name" use="required" type="xs:NCName"/>
+            <xs:attribute name="priority" use="required" type="xs:integer"/>
+            <xs:attribute name="type" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="source">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="url"/>
+            </xs:sequence>
+            <xs:attribute name="priority" type="xs:integer"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="url">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" ref="headers"/>
+                <xs:element ref="fields"/>
+            </xs:sequence>
+            <xs:attribute name="javascript" type="xs:integer"/>
+            <xs:attribute name="step" use="required" type="xs:integer"/>
+            <xs:attribute name="uri" use="required" type="xs:anyURI"/>
+            <xs:attribute name="waitJSComputation" type="xs:integer"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="headers">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="header"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="header">
+        <xs:complexType mixed="true">
+            <xs:attribute name="key" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="fields">
+        <xs:complexType>
+            <xs:choice>
+                <xs:element ref="arrayfield"/>
+                <xs:element maxOccurs="unbounded" ref="field"/>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="arrayfield">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="xpath"/>
+                <xs:element ref="arrayobject"/>
+            </xs:sequence>
+            <xs:attribute name="endOffset" type="xs:integer"/>
+            <xs:attribute name="name" use="required" type="xs:NCName"/>
+            <xs:attribute name="startOffset" type="xs:integer"/>
+            <xs:attribute name="type" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="xpath" type="xs:string"/>
+    <xs:element name="arrayobject">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="field"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="field">
+        <xs:complexType mixed="true">
+            <xs:attribute name="expectedValue" type="xs:NCName"/>
+            <xs:attribute name="name" use="required" type="xs:NCName"/>
+            <xs:attribute name="prefix"/>
+            <xs:attribute name="sufix"/>
+            <xs:attribute name="type" use="required" type="xs:NCName"/>
         </xs:complexType>
     </xs:element>
 </xs:schema>

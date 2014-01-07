@@ -55,11 +55,12 @@ void handleValidationError(void *ctx, const char *format, ...) {
     xmlDocPtr xmlDocumentPointer = xmlReadMemory([ruleData bytes], [ruleData length], "", NULL, XML_PARSE_RECOVER);
     
     
-    //parserCtxt = xmlSchemaNewMemParserCtxt([schemaData bytes],[schemaData length]);
-    parserCtxt = xmlSchemaNewParserCtxt([schemaData bytes]);
+    parserCtxt = xmlSchemaNewMemParserCtxt([schemaData bytes],[schemaData length]);
+    //parserCtxt = xmlSchemaNewParserCtxt([schemaData bytes]);
     
     if (parserCtxt == NULL) {
         fprintf(stderr, "Could not create XSD schema parsing context.\n");
+        
         goto leave;
     }
     
@@ -100,7 +101,7 @@ leave:
     printf("\n");
     printf("Validation successful: %s (result: %d)\n", (result == 0) ? "YES" : "NO", result);
     
-    return 0;
+    return (result == 0) ? YES : NO;
 }
 
 

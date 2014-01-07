@@ -24,6 +24,7 @@
 #import <libxml/HTMLparser.h>
 #import <libxml/xpath.h>
 #import <libxml/xpathInternals.h>
+#import "SettingsHelper.h"
 
 #import <UIKit/UIKit.h>
 
@@ -60,7 +61,7 @@
 // data
 
 // loadview locking
-@property NSLock * syncLock;
+@property (atomic) BOOL * changed;
 
 
 

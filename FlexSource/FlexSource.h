@@ -47,6 +47,9 @@
 // background threads for data parsing - default is 3
 @property int numberOfThreads;
 @property int frameworkVersion;
+@property bool strictSchemaValidation;
+
+
 @property bool log;
 
 

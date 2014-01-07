@@ -85,16 +85,15 @@
                         
                         [self webview];
                         
-                        _syncLock = [[NSLock alloc] init];
-
+                        _changed = NO;
+                        
                         [_webview  loadData:data MIMEType: @"text/html" textEncodingName: @"UTF-8" baseURL:uri];
                         //[_webview loadRequest:request];
                         
                         
                        // NSDate *wait = [NSDate dateWithTimeIntervalSinceNow:url.waitJSComputation];
-                        NSDate *wait = [NSDate dateWithTimeIntervalSinceNow:15.0];
+                       // NSDate *wait = [NSDate dateWithTimeIntervalSinceNow:15.0];
                        // [[NSRunLoop currentRunLoop] runUntilDate:wait];
-                        [_syncLock lock];
 
                         
                         //
@@ -106,17 +105,25 @@
 
                         
                        // }
-                        
-
-                        double timeout = 11.0;
+                   
+                        //timeOutJavaScriptCompilationTotal
+                        int timeout = [[SettingsHelper get:@"timeOutJavaScriptCompilationTotal"] integerValue];
                         BOOL timeUp = NO;
                         
                         CFAbsoluteTime startTime = CFAbsoluteTimeGetCurrent();
                         while(!timeUp)
                         {
-                            if(![_syncLock tryLock])[_syncLock unlock];
+                            // 1. unlock the lock
+                            @synchronized(self){
+                                _changed = NO;
+                            }
+                            // 2. wait for computation time
                             [NSThread sleepForTimeInterval:url.waitJSComputation];
-                            if ([_syncLock tryLock]) break;
+                            // 3. if no changes for computation time continue
+                            @synchronized(self){
+                                if (!_changed) break;
+                            }
+                            // 4. if timeOut is finished then jumpout
                             timeUp  = ((CFAbsoluteTimeGetCurrent() - startTime) >= timeout);
                         }
                         
@@ -222,9 +229,12 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     
        // NSString *yourHTMLSourceCodeString = [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.outerHTML"];
-    if([_syncLock tryLock])[_syncLock lock];
-
+    @synchronized(self){
+        _changed = YES;
+    }
+    
    // DLog(@"****** %@",yourHTMLSourceCodeString);
+     DLog(@"****** %@",[NSDate date]);
     //goto di;
 }
 
@@ -304,14 +314,16 @@
             
             if(xpathObj == NULL) {
                 DLog(@"Unable to evaluate XPath.");
-                return nil;
+                //return nil;
+                continue;
             }
             
             xmlNodeSetPtr nodes = xpathObj->nodesetval;
             if (!nodes)
             {
                 DLog(@"Nodes was nil.");
-                return nil;
+                //return nil;
+                continue;
             }
             
             
@@ -371,7 +383,7 @@
                 }
                 
                 
-                
+                /*
                 xmlAttr *attribute = currentNode->properties;
                 if (attribute)
                 {
@@ -418,7 +430,7 @@
                 
 
                 
-                
+                */
                 
                 
 //                else{

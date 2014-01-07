@@ -9,7 +9,7 @@
 #import "FlexSource.h"
 
 @implementation FlexSource
-@synthesize objectPool,resultPool,ruleUrls,currentRule,numberOfThreads,frameworkVersion,log,delegate;
+@synthesize objectPool,resultPool,ruleUrls,currentRule,numberOfThreads,frameworkVersion,log,delegate,strictSchemaValidation;
 
 
 // 1. init
@@ -23,7 +23,7 @@
         
 
         numberOfThreads = [[SettingsHelper get:@"numberOfThreads"] integerValue];
-        
+        strictSchemaValidation = NO;
         frameworkVersion = [[SettingsHelper get:@"frameworkVersion"] integerValue];
         
         //****** load rule from sandbox
@@ -49,7 +49,7 @@
         
         
         numberOfThreads = [[SettingsHelper get:@"numberOfThreads"] integerValue];
-        
+        strictSchemaValidation = NO;
         frameworkVersion = [[SettingsHelper get:@"frameworkVersion"] integerValue];
         
         //****** load rule from sandbox
@@ -112,9 +112,25 @@
             
             
             // ******* VALIDATION
-            NSString* str = [SettingsHelper get:@"schemaURL"];
-            NSData* schema = [str dataUsingEncoding:NSUTF8StringEncoding];
-            [ParsingRule validateRule:data withSchema:schema];
+//            NSString* str = [SettingsHelper get:@"schemaURL"];@""
+//            NSData* schema = [str dataUsingEncoding:NSUTF8StringEncoding];
+            
+            NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"ruleSchema"
+                                                             ofType:@"xsd"];
+
+            NSData *schema = [NSData dataWithContentsOfFile:path];
+            BOOL valid = [ParsingRule validateRule:data withSchema:schema];
+            
+            
+            //DLog(@"%@",schema);
+
+            if (!valid) {
+                if (strictSchemaValidation) {
+                    // put skip condition
+                    DLog(@"Schema Validation fail skipping this rule");
+                    continue;
+                }
+            }
             
             // ******* MAKE TRY
             NSMutableArray *ar = [ParsingRule parseRule:data];
@@ -189,6 +205,7 @@
 
 -(void)finishedObjectWithId:(NSString*)resourceID theObject:(NSObject*)object withStatus:(NSString*)status withMessage:(NSString*)message{
     
+    // so new data will be overwritten
     [resultPool setObject:object forKey:resourceID];
     
     if (log) {
