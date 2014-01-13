@@ -11,8 +11,8 @@
 //  this copyright and permission notice. Attribution in compiled projects is
 //  appreciated but not required.
 //
-#import <libxml/tree.h>
 #import <libxml/parser.h>
+#import <libxml/tree.h>
 #import <libxml/HTMLparser.h>
 #import <libxml/xpath.h>
 #import <libxml/xpathInternals.h>
