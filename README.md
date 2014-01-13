@@ -31,9 +31,9 @@ How to include FlexSource in my project?
 =======================
 
 1. Clone this repository and copy whole FlexSource folder to your new project. 
-2. Use cocoa pods.
+2. Use cocoa pods. Add to your podfile following `pod 'FlexSource'`.
 
-*Hint: You might need to include xmllib2.dylib to Project->Build Phases->Link Binary With Libraries* in xCode.
+*Hint: You might need to include xmllib2.dylib to Project->Build Phases->Link Binary With Libraries* in xCode if you prefer option nr. 1 .
  
 ###How to use?###
 
@@ -188,7 +188,7 @@ You can turn javascript processing on url level by attribute `javascript="1"` (D
 
 
 ##Is FlexSource fast?##
-Yes :) . Critical components (Data Parser) is written in C and uses xmllib2 to process HTML xPath queries.
+Yes :) . Critical components (Data Parser) are written in C and uses xmllib2 to process HTML xPath queries. Other pats of library use foundation framework. 
 
 ###How is parsing conducted?###
 One thread per object. You can de/increase total number of threads configuration/SettingsHelper.m.
@@ -202,7 +202,7 @@ Just add `priority` attribute lower, parsing for them will be started earlier.
 There is attribute `step` in url tag. Lower are first to come.
 
 ##License##
-1. [License]: <http://en.wikipedia.org/wiki/MIT_license> "MIT License"
+ [License]: <http://en.wikipedia.org/wiki/MIT_license> "MIT License"
 
 Please contact me if you made app with help of this framework so I can put it on the list. :)
 
