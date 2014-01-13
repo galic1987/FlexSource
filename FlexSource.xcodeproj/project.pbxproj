@@ -774,6 +774,10 @@
 				DSTROOT = /tmp/FlexSource.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FlexSource/FlexSource-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/include/libxml2",
+					"/usr/include/libxml2\n/usr/include/libxml2\n/usr/include/libxml2",
+				);
 				"HEADER_SEARCH_PATHS[arch=*]" = "$(SDKROOT)/usr/include/libxml2";
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -790,6 +794,10 @@
 				DSTROOT = /tmp/FlexSource.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FlexSource/FlexSource-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/include/libxml2",
+					"/usr/include/libxml2\n/usr/include/libxml2\n/usr/include/libxml2",
+				);
 				"HEADER_SEARCH_PATHS[arch=*]" = "$(SDKROOT)/usr/include/libxml2";
 				OTHER_LDFLAGS = (
 					"-ObjC",
