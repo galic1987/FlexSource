@@ -771,12 +771,14 @@
 		4B318D3117E52D7D006D359C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				DSTROOT = /tmp/FlexSource.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FlexSource/FlexSource-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(SDKROOT)/usr/include/libxml2",
 					"/usr/include/libxml2\n/usr/include/libxml2\n/usr/include/libxml2",
+					"${SDK_DIR}/usr/include/libxml2",
 				);
 				"HEADER_SEARCH_PATHS[arch=*]" = "$(SDKROOT)/usr/include/libxml2";
 				OTHER_LDFLAGS = (
@@ -792,12 +794,14 @@
 		4B318D3217E52D7D006D359C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				DSTROOT = /tmp/FlexSource.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FlexSource/FlexSource-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(SDKROOT)/usr/include/libxml2",
 					"/usr/include/libxml2\n/usr/include/libxml2\n/usr/include/libxml2",
+					"${SDK_DIR}/usr/include/libxml2",
 				);
 				"HEADER_SEARCH_PATHS[arch=*]" = "$(SDKROOT)/usr/include/libxml2";
 				OTHER_LDFLAGS = (

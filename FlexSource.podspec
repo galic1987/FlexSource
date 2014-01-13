@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "FlexSource"
-  s.version      = "0.0.18"
+  s.version      = "0.0.19"
   s.summary      = "Dynamic web extraction framework"
   s.description  = <<-DESC
 FlexSource is web extraction framework for mobile (iOS) applications. One can decouple information extraction method from the Internet via XML rules that mobile application can stream when starting app (or on some other time point/event).                    
