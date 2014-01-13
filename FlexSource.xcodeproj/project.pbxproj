@@ -774,6 +774,7 @@
 				DSTROOT = /tmp/FlexSource.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FlexSource/FlexSource-Prefix.pch";
+				"HEADER_SEARCH_PATHS[arch=*]" = "$(SDKROOT)/usr/include/libxml2";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
