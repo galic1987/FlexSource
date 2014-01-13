@@ -15,7 +15,7 @@
 #import "ParsingTest.h"
 
 #import "NSObject+FSClassHelper.h"
-#include <objc/objc-runtime.h>
+#import <objc/runtime.h>
 #include <libxml/xmlreader.h>
 #import "XPathQuery.h"
 #import "FlexSourceResponderDelegate.h"
