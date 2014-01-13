@@ -37,32 +37,34 @@ How to include FlexSource in my project?
  
 ###How to use?###
 
-`//put in .h file`
+```objective-c
 
-`#import "FlexSource.h"`
+//put in .h file
 
-
-`FlexSource *fx = [[FlexSource alloc]initWithRuleUrls:@"http://linktomyrule.com/rule.xml"]; `
-
-`// will disable NSLog `
-
-`fx.log = NO; `
-
-`// with this turned on, xml rule will be validated, and it will not continue if it is not xsd valid (you may find schema file in project FlexSource/Supporting Files/ruleSchema.xsd)`
-`// Alternative schema location: http://galic-design.com/flexSourceTests/schema.xml `
+#import "FlexSource.h"
 
 
-`fx.strictSchemaValidation = YES;`
+FlexSource *fx = [[FlexSource alloc]initWithRuleUrls:@"http://linktomyrule.com/rule.xml"]; 
 
-`fx.delegate = self;`
+// will disable NSLog 
 
-`//will trigger rule download and parsing of them to object pool`
+fx.log = NO; 
 
-`[fx updateRules];`
+// with this turned on, xml rule will be validated, and it will not continue if it is not xsd valid (you may find schema file in project FlexSource/Supporting Files/ruleSchema.xsd)
+// Alternative schema location: http://galic-design.com/flexSourceTests/schema.xml 
 
-`//will trigger object pool parsing and download of internet sources`
 
-`[fx parse];`
+fx.strictSchemaValidation = YES;
+
+fx.delegate = self
+
+//will trigger rule download and parsing of them to object pool
+
+[fx updateRules];
+
+//will trigger object pool parsing and download of internet sources
+
+[fx parse];```
 
 
 ### 1. How to create XML rules for data extraction?###
