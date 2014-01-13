@@ -64,7 +64,8 @@ fx.delegate = self
 
 //will trigger object pool parsing and download of internet sources
 
-[fx parse];```
+[fx parse];
+```
 
 
 ### 1. How to create XML rules for data extraction?###
@@ -103,7 +104,10 @@ More examples to be found at
 
 ###How to create Data placeholder objective c objects?###
 If you look above there is object with **NSIvoObject** type defined `<object type="NSIvoObject"` , and you should create new class with the same name:
-And add property **sett** of type **NSString** as defined further in fields. `<field name="sett" type="NSString">` .
+And add property **sett** of type **NSString** as defined further in fields. 
+`
+<field name="sett" type="NSString">
+` .
 
 Currently, framework supports only two types: NSString and int (more to come)
 
@@ -126,7 +130,8 @@ There is `FlexSourceResponderDelegate` that needs to be implemented i.e. look ab
 
 // test delegates
 
--(void)testResultOnObject:(NSMutableArray *)objects result:(BOOL)result msg:(NSString*)msg;```
+-(void)testResultOnObject:(NSMutableArray *)objects result:(BOOL)result msg:(NSString*)msg;
+```
 
 #Testing - How to create data extraction Tests?#
 
@@ -173,7 +178,8 @@ Yes. You can encapsulate objects in different form (array objects). Look for som
                         <field name="t2" type="NSString">td[3]/text()</field>
                     </arrayobject>
                 </arrayfield>
-            </fields>```
+            </fields>
+```
 
 What about javascript?
 ===
