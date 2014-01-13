@@ -115,7 +115,7 @@ Currently, framework supports only two types: NSString and int (more to come)
 
 There is `FlexSourceResponderDelegate` that needs to be implemented i.e. look above at `fx.delegate = self;`. Delegate object must have this implementations:
 
-```smalltalk 
+```objective-c 
 // object is finished and parsed
 
 -(void)finishedObjectWithId:(NSString*)resourceID theObject:(NSObject*)object withStatus:(NSString*)status withMessage:(NSString*)message;
@@ -167,7 +167,7 @@ xsi:schemaLocation="http://galic-design.com/flexSourceTests/schema.xml"
 
 Can I parse array of objects?
 ===
-Yes. You can encapsulate objects in different form (array objects). Look for some examples on example file on my website 
+Yes. You can encapsulate objects in different form (array objects). Look for some examples on example file on my website [Example Rule]: <http://galic-design.com/flexSourceTests/rule2.xml> 
 
 ```xml
 <fields>
@@ -183,34 +183,26 @@ Yes. You can encapsulate objects in different form (array objects). Look for som
 
 What about javascript?
 ===
-You can turn javascript processing on url level by attribute `javascript="1"`. Additionally one could add attribute ` waitJSComputation="3"` where 3 describes number of seconds of inactivity to be waited for javaScript computation. This might be useful if javaScript uses some external network requests to get some additional data needed for that data object. Total timeout time can be set in configuration/SettingsHelper.m , default is 15 seconds. 
+You can turn javascript processing on url level by attribute `javascript="1"` (Default is 0). Additionally one could add attribute ` waitJSComputation="3"` where 3 describes number of seconds of inactivity to be waited for javaScript computation. This might be useful if javaScript uses some external network requests to get some additional data needed for that data object. Total timeout time can be set in configuration/SettingsHelper.m , default is 15 seconds. 
 
 
-Is FlexSource fast?
-==== 
+
+##Is FlexSource fast?##
 Yes :) . Critical components (Data Parser) is written in C and uses xmllib2 to process HTML xPath queries.
 
-How is parsing conducted?
-==
+###How is parsing conducted?###
 One thread per object. You can de/increase total number of threads configuration/SettingsHelper.m.
 
-I want some objects be sooner parsed then other, how can I achieve that?
-==
+###I want some objects be sooner parsed then other, how can I achieve that?###
+
 Just add `priority` attribute lower, parsing for them will be started earlier.
 
-How to execute urls step by step?
-==
+##How to execute urls step by step?##
+
 There is attribute `step` in url tag. Lower are first to come.
 
-License
-==
+##License##
+1. [License]: <http://en.wikipedia.org/wiki/MIT_license> "MIT License"
 
-[MIT]: <http://en.wikipedia.org/wiki/MIT_license> "MIT"
-
-
-
-
-
-
-
+Please contact me if you made app with help of this framework so I can put it on the list. :)
 
