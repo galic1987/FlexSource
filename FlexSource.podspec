@@ -18,10 +18,9 @@ FlexSource is web extraction framework for mobile (iOS) applications. One can de
   s.requires_arc = true
 
   s.source_files = 'FlexSource'
-  s.resources = 'Assets'
+  s.resources = 'FlexSource'
 
   #s.ios.exclude_files = 'Classes/osx'
   #s.osx.exclude_files = 'Classes/ios'
   s.frameworks = 'libxml2.dylib' , 'UIKit.framework'
-  s.resources = 
 end
