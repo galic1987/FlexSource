@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "FlexSource"
-  s.version      = "0.0.1"
+  s.version      = "0.0.11"
   s.summary      = "A short description of FlexSource."
   s.description  = <<-DESC
                     iOS dynamic extraction framework
