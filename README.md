@@ -202,7 +202,7 @@ Just add `priority` attribute lower, parsing for them will be started earlier.
 There is attribute `step` in url tag. Lower are first to come.
 
 ##License##
- [License]: <http://en.wikipedia.org/wiki/MIT_license> "MIT License"
+ MIT [License]: <http://en.wikipedia.org/wiki/MIT_license> "MIT License"
 
 Please contact me if you made app with help of this framework so I can put it on the list. :)
 
