@@ -4,8 +4,7 @@ Pod::Spec.new do |s|
   s.version      = "0.0.11"
   s.summary      = "A short description of FlexSource."
   s.description  = <<-DESC
-                    iOS dynamic extraction framework
-                    
+FlexSource is web extraction framework for mobile (iOS) applications. One can decouple information extraction method from the Internet via XML rules that mobile application can stream when starting app (or on some other time point/event).                    
                    DESC
   s.homepage     = "http://galic-design.com"
   s.screenshots  = "http://galic-design.com/flexSourceTests/shot.png"
@@ -21,7 +20,8 @@ Pod::Spec.new do |s|
   s.source_files = 'FlexSource'
   s.resources = 'Assets'
 
-  s.ios.exclude_files = 'Classes/osx'
-  s.osx.exclude_files = 'Classes/ios'
+  #s.ios.exclude_files = 'Classes/osx'
+  #s.osx.exclude_files = 'Classes/ios'
   s.frameworks = 'libxml2.dylib' , 'UIKit.framework'
+  s.resources = 
 end
