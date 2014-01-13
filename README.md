@@ -44,7 +44,7 @@ How to include FlexSource in my project?
 #import "FlexSource.h"
 
 
-FlexSource *fx = [[FlexSource alloc]initWithRuleUrls:@"http://linktomyrule.com/rule.xml"]; 
+FlexSource *fx = [[FlexSource alloc]initWithRuleUrl:@"http://linktomyrule.com/rule.xml"]; 
 
 // will disable NSLog 
 
@@ -59,7 +59,7 @@ fx.strictSchemaValidation = YES;
 fx.delegate = self
 
 //will trigger rule download and parsing of them to object pool
-
+// is blocking, do not do this with main thread
 [fx updateRules];
 
 //will trigger object pool parsing and download of internet sources
