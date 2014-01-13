@@ -78,7 +78,8 @@ Download this 2 plugins and start generating xPath queries for your XML rules.
 
 Here is one example XML rule:
 
-```<objects parserVersion="1.0" 
+```xml
+<objects parserVersion="1.0" 
 fileVersion="1.0"
 xmlns="http://galic-design.com"
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -101,8 +102,8 @@ More examples to be found at
 
 
 ###How to create Data placeholder objective c objects?###
-If you look above there is object with **NSIvoObject** type defined ```<object type="NSIvoObject" ``` , and you should create new class with the same name:
-And add property **sett** of type **NSString** as defined further in fields. ```  <field name="sett" type="NSString">``` .
+If you look above there is object with **NSIvoObject** type defined `<object type="NSIvoObject"` , and you should create new class with the same name:
+And add property **sett** of type **NSString** as defined further in fields. `<field name="sett" type="NSString">` .
 
 Currently, framework supports only two types: NSString and int (more to come)
 
@@ -110,27 +111,29 @@ Currently, framework supports only two types: NSString and int (more to come)
 
 There is `FlexSourceResponderDelegate` that needs to be implemented i.e. look above at `fx.delegate = self;`. Delegate object must have this implementations:
 
-`// object is finished and parsed`
+```smalltalk 
+// object is finished and parsed
 
-`-(void)finishedObjectWithId:(NSString*)resourceID theObject:(NSObject*)object withStatus:(NSString*)status withMessage:(NSString*)message;`
+-(void)finishedObjectWithId:(NSString*)resourceID theObject:(NSObject*)object withStatus:(NSString*)status withMessage:(NSString*)message;
 
-`// unable to parse the object`
+// unable to parse the object
 
-`-(void)errorOnObjectWithId:(NSString*)resourceID theObject:(NSObject*)object withStatus:(NSString*)status withMessage:(NSString*)message;`
+-(void)errorOnObjectWithId:(NSString*)resourceID theObject:(NSObject*)object withStatus:(NSString*)status withMessage:(NSString*)message;
 
-`// unable to parse the rules for object parsing`
+// unable to parse the rules for object parsing
 
-`-(void)failedParsing:(NSString*)description;`
+-(void)failedParsing:(NSString*)description;
 
-`// test delegates`
+// test delegates
 
-`-(void)testResultOnObject:(NSMutableArray *)objects result:(BOOL)result msg:(NSString*)msg;`
+-(void)testResultOnObject:(NSMutableArray *)objects result:(BOOL)result msg:(NSString*)msg;```
 
 #Testing - How to create data extraction Tests?#
 
 Test rule example
 
-```<objects parserVersion="1.0" 
+```xml
+<objects parserVersion="1.0" 
 fileVersion="1.0"
 xmlns="http://galic-design.com"
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -196,7 +199,8 @@ There is attribute `step` in url tag. Lower are first to come.
 License
 ==
 
-[MIT Licence ]: <http://en.wikipedia.org/wiki/MIT_license> 
+[MIT]: <http://en.wikipedia.org/wiki/MIT_license> "MIT"
+
 
 
 
