@@ -5,11 +5,8 @@
 //  Created by Ivo Galic on 18/12/13.
 //  Copyright (c) 2013 Ivo Galic. All rights reserved.
 //
-#import "HTMLNode.h"
-#import "HTMLParser.h"
 
 #import "PropertyUtil.h"
-#import "ClassTestExample.h"
 
 #import "XPathQuery.h"
 #include <libxml/xmlreader.h>
@@ -70,13 +67,15 @@
     
     FlexSource *fx = [[FlexSource alloc]initWithRuleUrls:urls];
     fx.log = NO;
+    fx.strictSchemaValidation = YES;
+    fx.delegate = self;
+
     [fx updateRules];
-    
+
     
     
     NSDate *fiveSecondsFromNow = [NSDate dateWithTimeIntervalSinceNow:65.0];
     
-    fx.delegate = self;
     // delegate method include
     [fx parse];
     

@@ -63,7 +63,7 @@
     
 }
 
-
+// add here var types
 - (void)setValueForObjectDirect:(NSString *)value fieldName:(NSString*)fieldName classPropsFor:(Class)klass obj:(id)object{
     
     NSDictionary *listVarType= [PropertyUtil classPropsFor:klass];

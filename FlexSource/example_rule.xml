@@ -1,22 +1,106 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<objects parserVersion="1.0" fileVersion="1.0">
-<object type="NSIvoObject" name="resource1" priority="2" loading="">
-    <source priority="1" >
-        <url step="1" uri="https://addons.mozilla.org/en-us/firefox/addon/firepath/">
-            <headers>
-                <header key="User-Agent">Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:24.0) Gecko/20100101 Firefox/24.0</header>
-            </headers>
-            <fields>
-                <field name="sett" type="string">//*[@id='addon']/hgroup/h1/span[1]</field>
-                <arrayfield name="h2tag" type="string">
-                    <xpath>.//*[span]</xpath>
-                    <arrayobject type="" name="" loading="">
-                        <field name="h1tag" type="string">//*[@id='addon']/hgroup/h1/span[1]</field>
-                        <field name="h2tag" type="string">//*[@id='addon']/hgroup/h1/span[1]</field>
-                    </arrayobject>
-                </arrayfield>
-            </fields>
-        </url>
-    </source>
-</object>
+
+
+<objects
+    parserVersion="1.0"
+    fileVersion="1.0"
+    xmlns="http://galic-design.com"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://galic-design.com/flexSourceTests/schema.xml"
+    >
+    
+    <object type="NSIvoObject" name="resource1" priority="1" loading="">
+		
+        <source priority="1" >
+            <url step="1" uri="https://addons.mozilla.org/en-us/firefox/addon/firepath/">
+                <headers>
+					<header key="User-Agent">Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:24.0) Gecko/20100101 Firefox/24.0</header>
+					<header key="Pragma">no-cache</header>
+                </headers>
+                <fields>
+                    <field name="sett" type="NSString">//*[@id='addon']/hgroup/h1/span[1]/text()</field>
+                </fields>
+            </url>
+            <url step="2" uri="https://addons.mozilla.org/en-us/firefox/addon/firepath/">
+                <headers>
+					<header key="User-Agent">Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:24.0) Gecko/20100101 Firefox/24.0</header>
+					<header key="Pragma">no-cache</header>
+                </headers>
+                <fields>
+                    <field name="sett" type="NSString">//*[@id='addon']/hgroup/h1/span[1]/text()</field>
+                </fields>
+            </url>
+        </source>
+		
+        <source priority="2" >
+            <url step="1" uri="https://addons.mozilla.org/en-us/firefox/addon/firepath/">
+                <fields>
+                    <field name="sett" type="NSString">//*[@id='addon']/hgroup/h1/span[1]/text()</field>
+                </fields>
+            </url>
+            <url step="2" uri="https://addons.mozilla.org/en-us/firefox/addon/firepath/">
+                <headers>
+					<header key="User-Agent">Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:24.0) Gecko/20100101 Firefox/24.0</header>
+					<header key="Pragma">no-cache</header>
+                </headers>
+                <fields>
+                    <field name="sett" type="NSString" prefix="_" >//*[@id='addon']/hgroup/h1/span[1]/text()</field>
+                </fields>
+            </url>
+        </source>
+    </object>
+    
+    <object type="Test" name="resource4" priority="2" loading="">
+        <source priority="1" >
+            <url step="1" uri="https://addons.mozilla.org/en-us/firefox/addon/firepath/">
+                <headers>
+					<header key="User-Agent">Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:24.0) Gecko/20100101 Firefox/24.0</header>
+					<header key="Connection">keep-alive</header>
+					<header key="Pragma">no-cache</header>
+				</headers>
+                
+                <fields>
+                    <field name="sett" type="NSString" expectedValue="FirePath">//*[@id='addon']/hgroup/h1/span[1]/text()</field>
+                    <field name="sett2" type="NSString" expectedValue="firepath">//*[@id='addon']/hgroup/h1/span[1]/text()</field>
+                </fields>
+            </url>
+        </source>
+    </object>
+    
+    <object type="NSIvoObject2" name="resource2" priority="2" loading="">
+        <source priority="1" >
+            <url step="2" uri="https://btc-e.com/exchange/ltc_eur" javascript="1" waitJSComputation="3">
+                <headers>
+                    <header key="User-Agent">Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:24.0) Gecko/20100101 Firefox/24.0</header>
+                </headers>
+                <fields>
+                    <arrayfield name="ar" type="TestObject" startOffset="1" endOffset="11">
+                        <xpath>//*[@id='trade_history']/table/tbody/tr</xpath>
+                        <arrayobject>
+                            <field name="t1" type="NSString" prefix="" sufix="">td[1]/span/text()</field>
+                            <field name="t2" type="NSString">td[3]/text()</field>
+                        </arrayobject>
+                    </arrayfield>
+                </fields>
+            </url>
+        </source>
+	</object>
+	
+    <object type="NSIvoObject2" name="resource3" priority="4">
+        <source>
+            <url step="2" uri="https://btc-e.com/exchange/ltc_eur" javascript="1" waitJSComputation="3">
+                <fields>
+                    <arrayfield name="ar" type="TestObject">
+                        <xpath>//*[@id='trade_history']/table/tbody/tr</xpath>
+                        <arrayobject>
+                            <field name="t1" type="NSString" prefix="" sufix="">td[1]/span/text()</field>
+                            <field name="t2" type="NSString">td[3]/text()</field>
+                        </arrayobject>
+                    </arrayfield>
+                </fields>
+            </url>
+        </source>
+    </object>
+    
+    
 </objects>

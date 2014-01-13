@@ -89,7 +89,7 @@
 
 - (void)testXMLStructureParser
 {
-    return;
+    /*return;
     NSString *path = [[NSBundle bundleForClass:[self class] ] pathForResource:@"example_rule" ofType:@"xml"];
     NSData *xmlData = [NSData dataWithContentsOfFile:path];
     GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData options:0 error:nil];
@@ -145,13 +145,13 @@
             }
         }
     }
-
+*/
 }
 
 
 - (void)testHTMLParsing
 {
-    
+    /*
     return;
     NSString* file = [[NSBundle bundleForClass:[self class] ] pathForResource:@"example_rule" ofType:@"xml"];
     
@@ -216,14 +216,14 @@
     // start receiving objects synchro
     // parse objects with xpath
     //
-    
+    */
     
 }
 
 
 
 -(void)testClassDynamicProperties{
-    return;
+   /* return;
    NSDictionary *d= [PropertyUtil classPropsFor:[ClassTestExample class]];
     
     
@@ -256,7 +256,7 @@
     NSData *response = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&urlResponse error:&requestError];
     /* Return Value
      The downloaded data for the URL request. Returns nil if a connection could not be created or if the download fails.
-     */
+    
     if (response == nil) {
         // Check for problems
         if (requestError != nil) {
@@ -274,7 +274,7 @@
          nodeContent — an NSString containing the textual content of the node
          nodeAttributeArray — an NSArray of NSDictionary where each dictionary has two keys: attributeName (NSString) and nodeContent (NSString)
          nodeChildArray — an NSArray of child nodes (same structure as this node)
-         */
+    
         
         
         
@@ -292,7 +292,7 @@
     }
     
     
-    
+    */
    }
 
 
@@ -348,7 +348,7 @@
 
 -(void)testParsingBeta{
     return;
-    NSString* file = [[NSBundle bundleForClass:[self class] ] pathForResource:@"example_rule" ofType:@"xml"];
+   /* NSString* file = [[NSBundle bundleForClass:[self class] ] pathForResource:@"example_rule" ofType:@"xml"];
     
     // full unit [NSBundle mainBundle]
     //NSString *file=[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"example_rule.xml"];
@@ -492,7 +492,7 @@
     }
     
     
-    
+    */
 }
 
 

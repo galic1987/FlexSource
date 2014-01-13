@@ -40,6 +40,8 @@
     return self;
 }
 
+
+
 -(id)initWithRuleUrls:(NSMutableArray*)ruleUrlss{
     if ( self = [super init] ) {
         
@@ -104,7 +106,7 @@
             if (currentRule != nil) {
                 if (![ParsingRule checkNewFileVersion:currentRule.v parseRule:data]) {
                     // It is not new just return
-                    continue;
+                  //  continue;
                 }
             }
             
@@ -128,6 +130,7 @@
                 if (strictSchemaValidation) {
                     // put skip condition
                     DLog(@"Schema Validation fail skipping this rule");
+                    [self failedParsing:u.absoluteString];
                     continue;
                 }
             }
@@ -166,11 +169,7 @@
 
         }
         
-        
-        
-        
     }
-    
     
 }
 

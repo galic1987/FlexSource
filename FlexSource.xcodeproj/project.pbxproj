@@ -31,14 +31,10 @@
 		4B318D3A17E52EB4006D359C /* ParsingRule.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B318D3817E52EB4006D359C /* ParsingRule.m */; };
 		4B318D3D17E7ACA0006D359C /* ParsingObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B318D3C17E7ACA0006D359C /* ParsingObject.m */; };
 		4B318D3E17E7ACA0006D359C /* ParsingObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B318D3C17E7ACA0006D359C /* ParsingObject.m */; };
-		4B318D4217EA5A4A006D359C /* JobObjectPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B318D4117EA5A4A006D359C /* JobObjectPool.m */; };
-		4B318D4317EA5A4A006D359C /* JobObjectPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B318D4117EA5A4A006D359C /* JobObjectPool.m */; };
 		4B56D7CE185CB7DA00A73C32 /* NSIvoObject2.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B56D7CD185CB7DA00A73C32 /* NSIvoObject2.m */; };
 		4B56D7CF185CB7DA00A73C32 /* NSIvoObject2.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B56D7CD185CB7DA00A73C32 /* NSIvoObject2.m */; };
 		4B56D7D2185CB85200A73C32 /* TestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B56D7D1185CB85200A73C32 /* TestObject.m */; };
 		4B56D7D3185CB85200A73C32 /* TestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B56D7D1185CB85200A73C32 /* TestObject.m */; };
-		4B6AC52C18760B2B0003D02B /* RuleSandboxCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B6AC52B18760B2B0003D02B /* RuleSandboxCache.m */; };
-		4B6AC52D18760B2B0003D02B /* RuleSandboxCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B6AC52B18760B2B0003D02B /* RuleSandboxCache.m */; };
 		4B6AC5321876F45E0003D02B /* ParsingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B6AC5311876F45E0003D02B /* ParsingTest.m */; };
 		4B6AC5331876F45E0003D02B /* ParsingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B6AC5311876F45E0003D02B /* ParsingTest.m */; };
 		4B7450C51852086E00CE39F5 /* SettingsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7450C41852086E00CE39F5 /* SettingsHelper.m */; };
@@ -61,18 +57,11 @@
 		4BA4F0781862229000C33D53 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BA4F01C1860CC4A00C33D53 /* UIKit.framework */; };
 		4BA4F0801862229100C33D53 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4BA4F07E1862229100C33D53 /* InfoPlist.strings */; };
 		4BA4F08D1862244000C33D53 /* libFlexSource.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B318D0B17E52D7C006D359C /* libFlexSource.a */; };
-		4BE7D3D817EB519F003445F3 /* HTMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7D3D517EB519F003445F3 /* HTMLNode.m */; };
-		4BE7D3D917EB519F003445F3 /* HTMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7D3D517EB519F003445F3 /* HTMLNode.m */; };
-		4BE7D3DA17EB519F003445F3 /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7D3D717EB519F003445F3 /* HTMLParser.m */; };
-		4BE7D3DB17EB519F003445F3 /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7D3D717EB519F003445F3 /* HTMLParser.m */; };
 		4BE7D3DC17EB544B003445F3 /* example_rule.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4BE7D3CE17EB1F2B003445F3 /* example_rule.xml */; };
 		4BE7D3DF17EB75E7003445F3 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7D3DD17EB75E7003445F3 /* XPathQuery.m */; };
 		4BE7D3E017EB75E7003445F3 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7D3DD17EB75E7003445F3 /* XPathQuery.m */; };
-		4BE7D3E817EB7DBF003445F3 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7D3E717EB7DBE003445F3 /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		4BE7D3E917EB7DBF003445F3 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7D3E717EB7DBE003445F3 /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4BE7D3ED17EBA721003445F3 /* PropertyUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7D3EC17EBA721003445F3 /* PropertyUtil.m */; };
 		4BE7D3EE17EBA721003445F3 /* PropertyUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7D3EC17EBA721003445F3 /* PropertyUtil.m */; };
-		4BE7D3F117EBAA93003445F3 /* ClassTestExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7D3F017EBAA93003445F3 /* ClassTestExample.m */; };
 		4BE7D40117EF3EB3003445F3 /* ACWebScrapingClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7D3F417EF3EAF003445F3 /* ACWebScrapingClient.m */; };
 		4BE7D40217EF3EB3003445F3 /* ACWebScrapingClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7D3F417EF3EAF003445F3 /* ACWebScrapingClient.m */; };
 		4BE7D40317EF3EB3003445F3 /* ACWebScrapingOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7D3F617EF3EB0003445F3 /* ACWebScrapingOperation.m */; };
@@ -160,15 +149,11 @@
 		4B318D3817E52EB4006D359C /* ParsingRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ParsingRule.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4B318D3B17E7ACA0006D359C /* ParsingObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParsingObject.h; sourceTree = "<group>"; };
 		4B318D3C17E7ACA0006D359C /* ParsingObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ParsingObject.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		4B318D4017EA5A4A006D359C /* JobObjectPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobObjectPool.h; sourceTree = "<group>"; };
-		4B318D4117EA5A4A006D359C /* JobObjectPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobObjectPool.m; sourceTree = "<group>"; };
 		4B56D7CB185B6F0900A73C32 /* FlexSourceResponderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlexSourceResponderDelegate.h; sourceTree = "<group>"; };
 		4B56D7CC185CB7DA00A73C32 /* NSIvoObject2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSIvoObject2.h; sourceTree = "<group>"; };
 		4B56D7CD185CB7DA00A73C32 /* NSIvoObject2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSIvoObject2.m; sourceTree = "<group>"; };
 		4B56D7D0185CB85200A73C32 /* TestObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestObject.h; sourceTree = "<group>"; };
 		4B56D7D1185CB85200A73C32 /* TestObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestObject.m; sourceTree = "<group>"; };
-		4B6AC52A18760B2B0003D02B /* RuleSandboxCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RuleSandboxCache.h; sourceTree = "<group>"; };
-		4B6AC52B18760B2B0003D02B /* RuleSandboxCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RuleSandboxCache.m; sourceTree = "<group>"; };
 		4B6AC5301876F45E0003D02B /* ParsingTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParsingTest.h; sourceTree = "<group>"; };
 		4B6AC5311876F45E0003D02B /* ParsingTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParsingTest.m; sourceTree = "<group>"; };
 		4B7450C31852086E00CE39F5 /* SettingsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsHelper.h; sourceTree = "<group>"; };
@@ -194,18 +179,10 @@
 		4BA4F0811862229100C33D53 /* FSTestingHelperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSTestingHelperTests.m; sourceTree = "<group>"; };
 		4BE7D3CE17EB1F2B003445F3 /* example_rule.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = example_rule.xml; sourceTree = "<group>"; };
 		4BE7D3D017EB507B003445F3 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
-		4BE7D3D417EB519F003445F3 /* HTMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLNode.h; sourceTree = "<group>"; };
-		4BE7D3D517EB519F003445F3 /* HTMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLNode.m; sourceTree = "<group>"; };
-		4BE7D3D617EB519F003445F3 /* HTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLParser.h; sourceTree = "<group>"; };
-		4BE7D3D717EB519F003445F3 /* HTMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLParser.m; sourceTree = "<group>"; };
 		4BE7D3DD17EB75E7003445F3 /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
 		4BE7D3DE17EB75E7003445F3 /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
-		4BE7D3E617EB7DBE003445F3 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
-		4BE7D3E717EB7DBE003445F3 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
 		4BE7D3EB17EBA721003445F3 /* PropertyUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PropertyUtil.h; sourceTree = "<group>"; };
 		4BE7D3EC17EBA721003445F3 /* PropertyUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PropertyUtil.m; sourceTree = "<group>"; };
-		4BE7D3EF17EBAA93003445F3 /* ClassTestExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassTestExample.h; sourceTree = "<group>"; };
-		4BE7D3F017EBAA93003445F3 /* ClassTestExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassTestExample.m; sourceTree = "<group>"; };
 		4BE7D3F217EF3EAE003445F3 /* ACWebScraping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACWebScraping.h; sourceTree = "<group>"; };
 		4BE7D3F317EF3EAF003445F3 /* ACWebScrapingClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACWebScrapingClient.h; sourceTree = "<group>"; };
 		4BE7D3F417EF3EAF003445F3 /* ACWebScrapingClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACWebScrapingClient.m; sourceTree = "<group>"; };
@@ -320,7 +297,7 @@
 				4BE7D3EA17EBA6E4003445F3 /* InternalRuntimeClass */,
 				4BE7D3D317EB5191003445F3 /* XMLParsingLogic */,
 				4B318D3F17EA5A22006D359C /* BusinessLogic */,
-				4B318D3617E52E91006D359C /* Models */,
+				4B318D3617E52E91006D359C /* FlexSource */,
 				4B318D1317E52D7C006D359C /* FlexSource.h */,
 				4B318D1517E52D7C006D359C /* FlexSource.m */,
 				4B56D7CB185B6F0900A73C32 /* FlexSourceResponderDelegate.h */,
@@ -354,13 +331,11 @@
 			children = (
 				4B318D2717E52D7D006D359C /* FlexSourceTests-Info.plist */,
 				4B318D2817E52D7D006D359C /* InfoPlist.strings */,
-				4BE7D3EF17EBAA93003445F3 /* ClassTestExample.h */,
-				4BE7D3F017EBAA93003445F3 /* ClassTestExample.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		4B318D3617E52E91006D359C /* Models */ = {
+		4B318D3617E52E91006D359C /* FlexSource */ = {
 			isa = PBXGroup;
 			children = (
 				4B318D3717E52EB4006D359C /* ParsingRule.h */,
@@ -378,16 +353,12 @@
 				4B6AC5301876F45E0003D02B /* ParsingTest.h */,
 				4B6AC5311876F45E0003D02B /* ParsingTest.m */,
 			);
-			name = Models;
+			name = FlexSource;
 			sourceTree = "<group>";
 		};
 		4B318D3F17EA5A22006D359C /* BusinessLogic */ = {
 			isa = PBXGroup;
 			children = (
-				4B6AC52A18760B2B0003D02B /* RuleSandboxCache.h */,
-				4B6AC52B18760B2B0003D02B /* RuleSandboxCache.m */,
-				4B318D4017EA5A4A006D359C /* JobObjectPool.h */,
-				4B318D4117EA5A4A006D359C /* JobObjectPool.m */,
 			);
 			name = BusinessLogic;
 			sourceTree = "<group>";
@@ -457,14 +428,8 @@
 		4BE7D3D317EB5191003445F3 /* XMLParsingLogic */ = {
 			isa = PBXGroup;
 			children = (
-				4BE7D3E617EB7DBE003445F3 /* GDataXMLNode.h */,
-				4BE7D3E717EB7DBE003445F3 /* GDataXMLNode.m */,
 				4BE7D3DE17EB75E7003445F3 /* XPathQuery.h */,
 				4BE7D3DD17EB75E7003445F3 /* XPathQuery.m */,
-				4BE7D3D417EB519F003445F3 /* HTMLNode.h */,
-				4BE7D3D517EB519F003445F3 /* HTMLNode.m */,
-				4BE7D3D617EB519F003445F3 /* HTMLParser.h */,
-				4BE7D3D717EB519F003445F3 /* HTMLParser.m */,
 			);
 			name = XMLParsingLogic;
 			sourceTree = "<group>";
@@ -667,18 +632,13 @@
 				4B318D1617E52D7C006D359C /* FlexSource.m in Sources */,
 				4B318D3917E52EB4006D359C /* ParsingRule.m in Sources */,
 				4B318D3D17E7ACA0006D359C /* ParsingObject.m in Sources */,
-				4B318D4217EA5A4A006D359C /* JobObjectPool.m in Sources */,
-				4BE7D3D817EB519F003445F3 /* HTMLNode.m in Sources */,
-				4BE7D3DA17EB519F003445F3 /* HTMLParser.m in Sources */,
 				4BE7D3DF17EB75E7003445F3 /* XPathQuery.m in Sources */,
-				4BE7D3E817EB7DBF003445F3 /* GDataXMLNode.m in Sources */,
 				4BE7D3ED17EBA721003445F3 /* PropertyUtil.m in Sources */,
 				4B56D7CE185CB7DA00A73C32 /* NSIvoObject2.m in Sources */,
 				4BE7D40117EF3EB3003445F3 /* ACWebScrapingClient.m in Sources */,
 				4B29AE8718412FD2005C6FB9 /* ParsingField.m in Sources */,
 				4B56D7D2185CB85200A73C32 /* TestObject.m in Sources */,
 				4B7450C51852086E00CE39F5 /* SettingsHelper.m in Sources */,
-				4B6AC52C18760B2B0003D02B /* RuleSandboxCache.m in Sources */,
 				4BE7D40317EF3EB3003445F3 /* ACWebScrapingOperation.m in Sources */,
 				4B6AC5321876F45E0003D02B /* ParsingTest.m in Sources */,
 				4BE7D40517EF3EB3003445F3 /* ACWebScrapingActivityIndicatorManager.m in Sources */,
@@ -701,14 +661,9 @@
 				4B318D2D17E52D7D006D359C /* FlexSourceTests.m in Sources */,
 				4B318D3A17E52EB4006D359C /* ParsingRule.m in Sources */,
 				4B318D3E17E7ACA0006D359C /* ParsingObject.m in Sources */,
-				4B318D4317EA5A4A006D359C /* JobObjectPool.m in Sources */,
-				4BE7D3D917EB519F003445F3 /* HTMLNode.m in Sources */,
 				4B29AE8818412FD2005C6FB9 /* ParsingField.m in Sources */,
-				4BE7D3DB17EB519F003445F3 /* HTMLParser.m in Sources */,
 				4BE7D3E017EB75E7003445F3 /* XPathQuery.m in Sources */,
-				4BE7D3E917EB7DBF003445F3 /* GDataXMLNode.m in Sources */,
 				4BE7D3EE17EBA721003445F3 /* PropertyUtil.m in Sources */,
-				4BE7D3F117EBAA93003445F3 /* ClassTestExample.m in Sources */,
 				4B96544118424D8D00715A23 /* NSObject+FSClassHelper.m in Sources */,
 				4B6AC5331876F45E0003D02B /* ParsingTest.m in Sources */,
 				4B7450C61852086E00CE39F5 /* SettingsHelper.m in Sources */,
@@ -716,7 +671,6 @@
 				4BE7D40417EF3EB3003445F3 /* ACWebScrapingOperation.m in Sources */,
 				4BE7D40617EF3EB3003445F3 /* ACWebScrapingActivityIndicatorManager.m in Sources */,
 				4B56D7D3185CB85200A73C32 /* TestObject.m in Sources */,
-				4B6AC52D18760B2B0003D02B /* RuleSandboxCache.m in Sources */,
 				4B9654461843BEE400715A23 /* NSIvoObject.m in Sources */,
 				4BE7D40817EF3EB3003445F3 /* ACWebScraperQueue.m in Sources */,
 				4BE7D40A17EF3EB3003445F3 /* ACWebScraper.m in Sources */,

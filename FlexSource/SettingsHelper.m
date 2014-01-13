@@ -21,24 +21,20 @@ static NSString * frameworkVersion = @"1";
 + (void)registerDefaultsFromSettingsBundle {
     
     ////////////////
-    /// Default URL Rule settings
-    [self set:@"http://galic-design.com/flexSourceTests/rule1.xml" forKey:@"baseRuleURL"];
+    /// Default URL Rule settings --> will be called if FlexSource is nil
+    [self set:@"" forKey:@"baseRuleURL"];
 
-    [self set:@"http://galic-design.com/flexSourceTests/schema.xml" forKey:@"schemaURL"];
-
-    [self set:@"http://galic-design.com" forKey:@"ns"];
     
+    // nubmer of threads
+    // one object gets one thread to process
     [self set:@"5" forKey:@"numberOfThreads"];
     
-    [self set:@"5" forKey:@"timeOutJavaScriptCompilationTotal"];
+    // total time needed for javascript compilation
+    [self set:@"15" forKey:@"timeOutJavaScriptCompilationTotal"];
 
+    // framework version do not change
     [self set:frameworkVersion forKey:@"frameworkVersion"];
 
-    
-    
-    
-
-    
     
 }
 

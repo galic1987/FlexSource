@@ -234,7 +234,7 @@
     }
     
    // DLog(@"****** %@",yourHTMLSourceCodeString);
-     DLog(@"****** %@",[NSDate date]);
+     //DLog(@"****** %@",[NSDate date]);
     //goto di;
 }
 
@@ -382,62 +382,7 @@
                     
                 }
                 
-                
-                /*
-                xmlAttr *attribute = currentNode->properties;
-                if (attribute)
-                {
-                    NSMutableArray *attributeArray = [NSMutableArray array];
-                    while (attribute)
-                    {
-                        NSMutableDictionary *attributeDictionary = [NSMutableDictionary dictionary];
-                        NSString *attributeName =
-                        [NSString stringWithCString:(const char *)attribute->name encoding:NSUTF8StringEncoding];
-                        if (attributeName)
-                        {
-                            [attributeDictionary setObject:attributeName forKey:@"attributeName"];
-                        }
-                        
-                        if (attribute->children)
-                        {
-                            //NSDictionary *childDictionary = DictionaryForNode(attribute->children, attributeDictionary);
-                            //if (childDictionary)
-                           // {
-                                //[attributeDictionary setObject:childDictionary forKey:@"attributeContent"];
-                           // }
-                        }
-                        
-                        if ([attributeDictionary count] > 0)
-                        {
-                            [attributeArray addObject:attributeDictionary];
-                        }
-                        attribute = attribute->next;
-                    }
-                    
-                    if ([attributeArray count] > 0)
-                    {
-                        //[resultForNode setObject:attributeArray forKey:@"nodeAttributeArray"];
-                    }
-                }
-                
-                xmlNodePtr childNode = currentNode->children;
-                if (childNode)
-                {
-
-
-                }
-                
-                
-
-                
-                */
-                
-                
-//                else{
-//                    DLog(@"ERROR UNKNOWN");
-//                    if(log) DLog(@"cannot find xpath value for field %@ with value %@",parsingField.name,parsingField.xpath);
-//                    
-//                }
+                     
             }
             
         }else{
@@ -460,7 +405,7 @@
             
             if(xpathObj == NULL) {
                 DLog(@"Unable to evaluate XPath.");
-                return nil;
+                continue;
             }
             
             //iteriraj rezultate od noda salji i vracaji dodaji u array!!!
@@ -469,7 +414,7 @@
             if (!nodes)
             {
                 DLog(@"Nodes was nil.");
-                return nil;
+                continue;
             }
             
             
